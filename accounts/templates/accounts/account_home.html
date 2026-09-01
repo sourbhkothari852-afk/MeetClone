@@ -1,0 +1,434 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Account - MeetClone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/account.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <main class="account-page">
+
+        <div class="account-container">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <section class="account-header">
+
+                <div class="account-icon">
+                    👤
+                </div>
+
+
+                <div class="account-header-content">
+
+                    <h1>
+                        Account
+                    </h1>
+
+                    <p>
+                        Manage your MeetClone account and preferences.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CURRENT USER
+            ================================================== -->
+
+            <section class="account-user">
+
+                <div class="account-avatar">
+
+                    {% if request.user.profile.profile_picture %}
+
+                        <img
+                            src="{{ request.user.profile.profile_picture.url }}"
+                            alt="Profile picture"
+                        >
+
+                    {% else %}
+
+                        <span>
+                            {{ request.user.username|first|upper }}
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="account-user-info">
+
+                    <h2>
+                        {{ request.user.username }}
+                    </h2>
+
+                    <p>
+                        {{ request.user.email }}
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="account-view-profile"
+                >
+                    View Profile
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 ACCOUNT MANAGEMENT
+            ================================================== -->
+
+            <section class="account-section">
+
+                <div class="account-section-header">
+
+                    <h2>
+                        Account Management
+                    </h2>
+
+                    <p>
+                        Manage your profile and account information.
+                    </p>
+
+                </div>
+
+
+                <!-- PROFILE -->
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="account-card"
+                >
+
+                    <div class="account-card-icon">
+                        👤
+                    </div>
+
+
+                    <div class="account-card-content">
+
+                        <h3>
+                            Profile
+                        </h3>
+
+                        <p>
+                            View your profile information,
+                            username, email and profile picture.
+                        </p>
+
+                    </div>
+
+
+                    <span class="account-card-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <!-- EDIT PROFILE -->
+
+                <a
+                    href="{% url 'edit_profile' %}"
+                    class="account-card"
+                >
+
+                    <div class="account-card-icon">
+                        ✏️
+                    </div>
+
+
+                    <div class="account-card-content">
+
+                        <h3>
+                            Edit Profile
+                        </h3>
+
+                        <p>
+                            Update your name, username,
+                            email and profile picture.
+                        </p>
+
+                    </div>
+
+
+                    <span class="account-card-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <!-- ACCOUNT INFORMATION -->
+
+                 <a
+                    href="{% url 'account_info' %}"
+                    class="account-card"
+                > 
+
+                    <div class="account-card-icon">
+                        ℹ️
+                    </div>
+
+
+                    <div class="account-card-content">
+
+                        <h3>
+                            Account Information
+                        </h3>
+
+                        <p>
+                            View your username, email
+                            and account creation date.
+                        </p>
+
+                    </div>
+
+
+                    <span class="account-card-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 SECURITY
+            ================================================== -->
+
+            <section class="account-section">
+
+                <div class="account-section-header">
+
+                    <h2>
+                        Security
+                    </h2>
+
+                    <p>
+                        Protect your MeetClone account.
+                    </p>
+
+                </div>
+
+
+                <!-- CHANGE PASSWORD -->
+
+                <a
+                    href="{% url 'change_password' %}"
+                    class="account-card"
+                >
+
+                    <div class="account-card-icon">
+                        🔐
+                    </div>
+
+
+                    <div class="account-card-content">
+
+                        <h3>
+                            Change Password
+                        </h3>
+
+                        <p>
+                            Change your current account password.
+                        </p>
+
+                    </div>
+
+
+                    <span class="account-card-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 SETTINGS
+            ================================================== -->
+
+            <section class="account-section">
+
+                <div class="account-section-header">
+
+                    <h2>
+                        Settings
+                    </h2>
+
+                    <p>
+                        Control your account preferences.
+                    </p>
+
+                </div>
+
+
+                <!-- ACCOUNT SETTINGS -->
+
+                <a
+                    href="{% url 'account_settings' %}"
+                    class="account-card"
+                >
+
+                    <div class="account-card-icon">
+                        ⚙️
+                    </div>
+
+
+                    <div class="account-card-content">
+
+                        <h3>
+                            Account Settings
+                        </h3>
+
+                        <p>
+                            Manage your profile, security,
+                            privacy and notification settings.
+                        </p>
+
+                    </div>
+
+
+                    <span class="account-card-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <!-- PRIVACY -->
+
+                <a
+                    href="{% url 'privacy' %}"
+                    class="account-card"
+                >
+
+                    <div class="account-card-icon">
+                        🔒
+                    </div>
+
+
+                    <div class="account-card-content">
+
+                        <h3>
+                            Privacy
+                        </h3>
+
+                        <p>
+                            Control profile visibility and
+                            message privacy.
+                        </p>
+
+                    </div>
+
+
+                    <span class="account-card-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <!-- NOTIFICATIONS -->
+
+                <a
+                    href="{% url 'notifications' %}"
+                    class="account-card"
+                >
+
+                    <div class="account-card-icon">
+                        🔔
+                    </div>
+
+
+                    <div class="account-card-content">
+
+                        <h3>
+                            Notifications
+                        </h3>
+
+                        <p>
+                            Manage email, login, meeting
+                            and account activity notifications.
+                        </p>
+
+                    </div>
+
+
+                    <span class="account-card-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER ACTIONS
+            ================================================== -->
+
+            <section class="account-footer-actions">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="account-secondary-button"
+                >
+                    Back to Home
+                </a>
+
+
+                <a
+                    href="{% url 'logout' %}"
+                    class="account-logout-button"
+                >
+                    Logout
+                </a>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

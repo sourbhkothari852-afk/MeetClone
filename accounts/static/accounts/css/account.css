@@ -1,0 +1,877 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --primary: #1a73e8;
+    --primary-hover: #1765cc;
+
+    --text: #202124;
+    --text-secondary: #6b7280;
+
+    --border: #e3e7ec;
+    --border-light: #eeeeee;
+
+    --background: #f8fafd;
+    --surface: #ffffff;
+    --surface-soft: #f8f9fa;
+
+    --danger: #d93025;
+    --danger-hover: #b3261e;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.account-page {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    padding: 45px 20px;
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.account-container {
+
+    width: 100%;
+
+    max-width: 720px;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.account-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+
+    padding: 28px 30px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(32, 33, 36, 0.06);
+
+}
+
+
+/* =========================================================
+   HEADER ICON
+========================================================= */
+
+.account-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eef4ff;
+
+    border: 1px solid #dbe7ff;
+
+    font-size: 26px;
+
+}
+
+
+/* =========================================================
+   HEADER CONTENT
+========================================================= */
+
+.account-header-content {
+
+    min-width: 0;
+
+}
+
+
+.account-header-content h1 {
+
+    color: var(--text);
+
+    font-size: 27px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+}
+
+
+.account-header-content p {
+
+    margin-top: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+.account-user {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 28px;
+
+    padding: 18px 20px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+}
+
+
+/* =========================================================
+   USER AVATAR
+========================================================= */
+
+.account-avatar {
+
+    width: 58px;
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #eef4ff;
+
+    border: 1px solid #dbe7ff;
+
+    color: var(--primary);
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+}
+
+
+.account-avatar img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+}
+
+
+/* =========================================================
+   USER INFO
+========================================================= */
+
+.account-user-info {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.account-user-info h2 {
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+.account-user-info p {
+
+    margin-top: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+/* =========================================================
+   VIEW PROFILE BUTTON
+========================================================= */
+
+.account-view-profile {
+
+    flex-shrink: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--primary);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: var(--primary);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+.account-view-profile:hover {
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    color: #ffffff;
+
+}
+
+
+/* =========================================================
+   ACCOUNT SECTION
+========================================================= */
+
+.account-section {
+
+    width: 100%;
+
+    margin-bottom: 25px;
+
+    padding: 22px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.account-section-header {
+
+    margin-bottom: 15px;
+
+}
+
+
+.account-section-header h2 {
+
+    color: var(--text);
+
+    font-size: 17px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+
+}
+
+
+.account-section-header p {
+
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   ACCOUNT CARD
+========================================================= */
+
+.account-card {
+
+    width: 100%;
+
+    min-height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 16px;
+
+    margin-top: 10px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+
+}
+
+
+.account-card:hover {
+
+    background: #fbfcfe;
+
+    border-color: #d5dbe3;
+
+    box-shadow:
+        0 4px 14px
+        rgba(32, 33, 36, 0.06);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.account-card-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f1f5fb;
+
+    border: 1px solid #e3e9f2;
+
+    font-size: 20px;
+
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.account-card-content {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.account-card-content h3 {
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+
+}
+
+
+.account-card-content p {
+
+    margin-top: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   CARD ARROW
+========================================================= */
+
+.account-card-arrow {
+
+    flex-shrink: 0;
+
+    color: #8a9199;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    transition:
+        color 0.18s ease,
+        transform 0.18s ease;
+
+}
+
+
+.account-card:hover .account-card-arrow {
+
+    color: var(--primary);
+
+    transform: translateX(3px);
+
+}
+
+
+/* =========================================================
+   FOOTER ACTIONS
+========================================================= */
+
+.account-footer-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    padding: 5px 0 25px;
+
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.account-secondary-button {
+
+    min-height: 46px;
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 18px;
+
+    border: 1px solid #dadce0;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #3c4043;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+.account-secondary-button:hover {
+
+    background: #f1f3f4;
+
+    border-color: #d5d8dc;
+
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+========================================================= */
+
+.account-logout-button {
+
+    min-height: 46px;
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 18px;
+
+    border: 1px solid #f0c7c3;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: var(--danger);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+
+}
+
+
+.account-logout-button:hover {
+
+    background: #fdf0ef;
+
+    border-color: #e9aaa5;
+
+    color: var(--danger-hover);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .account-page {
+
+        padding: 20px 14px;
+
+    }
+
+
+    .account-header {
+
+        align-items: flex-start;
+
+        padding: 22px 20px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .account-icon {
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 23px;
+
+    }
+
+
+    .account-header-content h1 {
+
+        font-size: 23px;
+
+    }
+
+
+    .account-header-content p {
+
+        font-size: 12px;
+
+    }
+
+
+    .account-user {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+
+        padding: 16px;
+
+    }
+
+
+    .account-user-info {
+
+        padding-top: 2px;
+
+    }
+
+
+    .account-view-profile {
+
+        width: 100%;
+
+        margin-top: 4px;
+
+    }
+
+
+    .account-section {
+
+        padding: 17px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .account-card {
+
+        min-height: 75px;
+
+        padding: 13px;
+
+        gap: 12px;
+
+    }
+
+
+    .account-card-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 18px;
+
+    }
+
+
+    .account-card-content h3 {
+
+        font-size: 13px;
+
+    }
+
+
+    .account-card-content p {
+
+        font-size: 10px;
+
+    }
+
+
+    .account-footer-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .account-secondary-button,
+    .account-logout-button {
+
+        width: 100%;
+
+        min-height: 48px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .account-page {
+
+        padding: 14px 10px;
+
+    }
+
+
+    .account-header {
+
+        gap: 12px;
+
+        padding: 19px 16px;
+
+    }
+
+
+    .account-icon {
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 20px;
+
+    }
+
+
+    .account-header-content h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .account-section {
+
+        padding: 14px;
+
+    }
+
+
+    .account-card {
+
+        padding: 12px;
+
+    }
+
+
+    .account-card-arrow {
+
+        font-size: 17px;
+
+    }
+
+}

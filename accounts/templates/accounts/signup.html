@@ -1,0 +1,422 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Create Account - MeetClone
+    </title>
+
+
+    <!-- =====================================================
+         AUTH CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/auth.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         AUTH PAGE
+    ====================================================== -->
+
+    <main class="auth-page">
+
+
+        <div class="auth-container">
+
+
+            <!-- =================================================
+                 LEFT BRAND PANEL
+            ================================================== -->
+
+            <section class="auth-brand">
+
+
+                <!-- LOGO -->
+
+                <a
+                    href="{% url 'home' %}"
+                    class="auth-logo"
+                >
+                    MeetClone
+                </a>
+
+
+                <!-- BRAND CONTENT -->
+
+                <div class="brand-content">
+
+
+                    <span class="brand-label">
+                        VIDEO MEETINGS
+                    </span>
+
+
+                    <h1>
+
+                        Connect with
+
+                        <span>
+                            everyone.
+                        </span>
+
+                    </h1>
+
+
+                    <p>
+
+                        Create your MeetClone account and start
+                        secure video meetings with your team,
+                        friends and family.
+
+                    </p>
+
+
+                    <!-- =============================================
+                         BRAND PREVIEW
+                    ============================================== -->
+
+                    <div class="brand-preview">
+
+
+                        <!-- PREVIEW HEADER -->
+
+                        <div class="brand-preview-header">
+
+
+                            <span class="preview-status">
+
+                                ● Live Meeting
+
+                            </span>
+
+
+                            <span class="preview-title">
+
+                                MeetClone
+
+                            </span>
+
+
+                        </div>
+
+
+                        <!-- =========================================
+                             PARTICIPANTS
+                        ========================================== -->
+
+                        <div class="brand-preview-inner">
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- =========================================
+                             MEETING CONTROLS
+                        ========================================== -->
+
+                        <div class="brand-preview-controls">
+
+
+                            <span
+                                aria-label="Microphone"
+                                title="Microphone"
+                            >
+                                🎤
+                            </span>
+
+
+                            <span
+                                aria-label="Camera"
+                                title="Camera"
+                            >
+                                📹
+                            </span>
+
+
+                            <span
+                                aria-label="Screen sharing"
+                                title="Screen sharing"
+                            >
+                                🖥️
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 CREATE ACCOUNT FORM
+            ================================================== -->
+
+            <section class="auth-form-section">
+
+
+                <!-- FORM HEADER -->
+
+                <div class="auth-form-header">
+
+
+                    <span class="form-label">
+
+                        GET STARTED
+
+                    </span>
+
+
+                    <h2>
+
+                        Create your account
+
+                    </h2>
+
+
+                    <p>
+
+                        Join MeetClone and start connecting
+                        with people in just a few seconds.
+
+                    </p>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     SIGNUP FORM
+                ================================================== -->
+
+                <form
+                    method="POST"
+                    class="auth-form"
+                    novalidate
+                >
+
+
+                    {% csrf_token %}
+
+
+                    <!-- =============================================
+                         NON-FIELD ERRORS
+                    ============================================== -->
+
+                    {% if form.non_field_errors %}
+
+                        <div class="auth-form-error">
+
+                            {{ form.non_field_errors }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- =============================================
+                         FORM FIELDS
+                    ============================================== -->
+
+                    {% for field in form %}
+
+
+                        <div class="auth-field">
+
+
+                            <!-- LABEL -->
+
+                            <label for="{{ field.id_for_label }}">
+
+                                {{ field.label }}
+
+                            </label>
+
+
+                            <!-- INPUT -->
+
+                            {{ field }}
+
+
+                            <!-- HELP TEXT -->
+
+                            {% if field.help_text %}
+
+                                <small class="field-help">
+
+                                    {{ field.help_text }}
+
+                                </small>
+
+                            {% endif %}
+
+
+                            <!-- FIELD ERRORS -->
+
+                            {% if field.errors %}
+
+                                <div class="field-error">
+
+                                    {{ field.errors }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    {% endfor %}
+
+
+                    <!-- =============================================
+                         SUBMIT BUTTON
+                    ============================================== -->
+
+                    <button
+                        type="submit"
+                        class="auth-submit"
+                    >
+
+                        Create Account
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- =================================================
+                     LOGIN LINK
+                ================================================== -->
+
+                <div class="auth-footer">
+
+
+                    <p>
+
+                        Already have an account?
+
+                        <a href="{% url 'login' %}">
+
+                            Login
+
+                        </a>
+
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         SITE FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+        <div class="footer-content">
+
+
+            <!-- COPYRIGHT -->
+
+            <p>
+
+                © 2026 MeetClone
+
+            </p>
+
+
+            <!-- FOOTER LINKS -->
+
+            <div class="footer-links">
+
+
+                <a href="{% url 'privacy' %}">
+
+                    Privacy
+
+                </a>
+
+
+                <a href="{% url 'terms' %}">
+
+                    Terms & Conditions
+
+                </a>
+
+
+                <a href="{% url 'help' %}">
+
+                    Help
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

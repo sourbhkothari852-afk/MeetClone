@@ -1,0 +1,262 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Notifications - MeetClone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/notifications.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="notifications-page">
+
+        <div class="notifications-container">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <section class="notifications-header">
+
+                <div
+                    class="notifications-icon"
+                    aria-hidden="true"
+                >
+                    🔔
+                </div>
+
+
+                <h1>
+                    Notifications
+                </h1>
+
+
+                <p>
+                    Choose which notifications you want to receive.
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form
+                method="POST"
+                class="notifications-form"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =================================================
+                     FORM ERRORS
+                ================================================== -->
+
+                {% if form.non_field_errors %}
+
+                    <div
+                        class="notifications-error"
+                        role="alert"
+                    >
+
+                        {{ form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- =================================================
+                     EMAIL NOTIFICATIONS
+                ================================================== -->
+
+                <div class="notification-option">
+
+                    <div class="notification-option-content">
+
+                        <h2>
+                            Email Notifications
+                        </h2>
+
+                        <p>
+                            Receive important notifications
+                            through your email.
+                        </p>
+
+                    </div>
+
+
+                    <label class="notification-switch">
+
+                        {{ form.email_notifications }}
+
+                        <span class="notification-slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- =================================================
+                     LOGIN ALERTS
+                ================================================== -->
+
+                <div class="notification-option">
+
+                    <div class="notification-option-content">
+
+                        <h2>
+                            Login Alerts
+                        </h2>
+
+                        <p>
+                            Get notified when your account
+                            is accessed from a new login.
+                        </p>
+
+                    </div>
+
+
+                    <label class="notification-switch">
+
+                        {{ form.login_alerts }}
+
+                        <span class="notification-slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- =================================================
+                     MEETING NOTIFICATIONS
+                ================================================== -->
+
+                <div class="notification-option">
+
+                    <div class="notification-option-content">
+
+                        <h2>
+                            Meeting Notifications
+                        </h2>
+
+                        <p>
+                            Receive notifications about
+                            meetings and meeting activity.
+                        </p>
+
+                    </div>
+
+
+                    <label class="notification-switch">
+
+                        {{ form.meeting_notifications }}
+
+                        <span class="notification-slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- =================================================
+                     ACCOUNT ACTIVITY
+                ================================================== -->
+
+                <div class="notification-option">
+
+                    <div class="notification-option-content">
+
+                        <h2>
+                            Account Activity
+                        </h2>
+
+                        <p>
+                            Receive important updates about
+                            your MeetClone account.
+                        </p>
+
+                    </div>
+
+
+                    <label class="notification-switch">
+
+                        {{ form.account_activity_notifications }}
+
+                        <span class="notification-slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- =================================================
+                     ACTIONS
+                ================================================== -->
+
+                <div class="notifications-actions">
+
+                    <button
+                        type="submit"
+                        class="notifications-save"
+                    >
+                        Save Notification Settings
+                    </button>
+
+
+                    <a
+                        href="{% url 'account_settings' %}"
+                        class="notifications-cancel"
+                    >
+                        Cancel
+                    </a>
+
+                </div>
+
+
+            </form>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <div class="notifications-footer">
+
+                <a
+                    href="{% url 'profile' %}"
+                >
+                    Back to Profile
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

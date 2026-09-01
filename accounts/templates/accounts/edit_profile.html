@@ -1,0 +1,498 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Edit Profile - MeetClone
+    </title>
+
+
+    <!-- =====================================================
+         EDIT PROFILE CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/edit_profile.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+
+        <!-- LOGO -->
+
+        <div class="navbar-left">
+
+            <a
+                href="{% url 'home' %}"
+                class="logo"
+            >
+                MeetClone
+            </a>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="navbar-right">
+
+
+            <a
+                href="{% url 'home' %}"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{% url 'profile' %}"
+                class="nav-link"
+            >
+                Profile
+            </a>
+
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout-btn"
+            >
+                Logout
+            </a>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="profile-page">
+
+
+        <div class="profile-container">
+
+
+            <!-- =================================================
+                 PAGE HEADER
+            ================================================== -->
+
+            <section class="edit-profile-header">
+
+
+                <span class="profile-label">
+                    MEETCLONE PROFILE
+                </span>
+
+
+                <h1>
+                    Edit Profile
+                </h1>
+
+
+                <p>
+                    Update your personal information and profile picture.
+                </p>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 EDIT PROFILE FORM
+            ================================================== -->
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="edit-profile-form"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =============================================
+                     NON-FIELD ERRORS
+                ============================================== -->
+
+                {% if user_form.non_field_errors %}
+
+                    <div class="form-error">
+
+                        {{ user_form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                {% if profile_form.non_field_errors %}
+
+                    <div class="form-error">
+
+                        {{ profile_form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+
+                <!-- =================================================
+                     PROFILE PICTURE SECTION
+                ================================================== -->
+
+                <section class="edit-profile-section">
+
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Profile Picture
+                            </h2>
+
+
+                            <p>
+                                Choose a picture that represents you.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="edit-picture-section">
+
+
+                        <!-- CURRENT PROFILE IMAGE -->
+
+                        <div class="edit-profile-preview">
+
+
+                            {% if profile.profile_picture %}
+
+                                <img
+                                    src="{{ profile.profile_picture.url }}"
+                                    alt="{{ request.user.username }}"
+                                    class="profile-picture"
+                                >
+
+                            {% else %}
+
+                                <div
+                                    class="profile-picture-placeholder"
+                                >
+
+                                    {{ request.user.username|first|upper }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- UPLOAD INPUT -->
+
+                        <div class="picture-upload">
+
+
+                            <label
+                                for="{{ profile_form.profile_picture.id_for_label }}"
+                            >
+                                Change Profile Picture
+                            </label>
+
+
+                            {{ profile_form.profile_picture }}
+
+
+                            <small>
+                                Upload a clear image for your profile.
+                            </small>
+
+
+                            {% if profile_form.profile_picture.errors %}
+
+                                <div class="field-error">
+
+                                    {{ profile_form.profile_picture.errors }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     PERSONAL INFORMATION
+                ================================================== -->
+
+                <section class="edit-profile-section">
+
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Personal Information
+                            </h2>
+
+
+                            <p>
+                                Update the information associated with your account.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FORM FIELDS -->
+
+                    <div class="edit-form-fields">
+
+
+                        <!-- FIRST NAME -->
+
+                        <div class="edit-field">
+
+                            <label
+                                for="{{ user_form.first_name.id_for_label }}"
+                            >
+                                First Name
+                            </label>
+
+
+                            {{ user_form.first_name }}
+
+
+                            {% if user_form.first_name.errors %}
+
+                                <div class="field-error">
+
+                                    {{ user_form.first_name.errors }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- LAST NAME -->
+
+                        <div class="edit-field">
+
+                            <label
+                                for="{{ user_form.last_name.id_for_label }}"
+                            >
+                                Last Name
+                            </label>
+
+
+                            {{ user_form.last_name }}
+
+
+                            {% if user_form.last_name.errors %}
+
+                                <div class="field-error">
+
+                                    {{ user_form.last_name.errors }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- USERNAME -->
+
+                        <div class="edit-field">
+
+                            <label
+                                for="{{ user_form.username.id_for_label }}"
+                            >
+                                Username
+                            </label>
+
+
+                            {{ user_form.username }}
+
+
+                            {% if user_form.username.errors %}
+
+                                <div class="field-error">
+
+                                    {{ user_form.username.errors }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="edit-field">
+
+                            <label
+                                for="{{ user_form.email.id_for_label }}"
+                            >
+                                Email Address
+                            </label>
+
+
+                            {{ user_form.email }}
+
+
+                            {% if user_form.email.errors %}
+
+                                <div class="field-error">
+
+                                    {{ user_form.email.errors }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     FORM ACTIONS
+                ================================================== -->
+
+                <div class="edit-profile-actions">
+
+
+                    <!-- CANCEL -->
+
+                    <a
+                        href="{% url 'profile' %}"
+                        class="cancel-edit-btn"
+                    >
+                        Cancel
+                    </a>
+
+
+                    <!-- SAVE -->
+
+                    <button
+                        type="submit"
+                        class="save-profile-btn"
+                    >
+                        Save Changes
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <p>
+            © 2026 MeetClone
+        </p>
+
+
+        <div class="footer-links">
+
+
+            <a href="{% url 'privacy' %}">
+                Privacy
+            </a>
+
+
+            <a href="{% url 'terms' %}">
+                Terms &amp; Conditions
+            </a>
+
+
+            <a href="{% url 'help' %}">
+                Help
+            </a>
+
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

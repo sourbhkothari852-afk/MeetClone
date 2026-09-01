@@ -1,0 +1,1161 @@
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --primary: #1a73e8;
+    --primary-hover: #1765cc;
+
+    --background: #f8fafd;
+    --surface: #ffffff;
+
+    --text: #202124;
+    --text-secondary: #5f6368;
+    --muted: #6b7280;
+
+    --border: #e3e7ec;
+    --border-dark: #d5d9df;
+
+    --danger: #b3261e;
+    --danger-background: #fdf0ef;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+html,
+body {
+
+    min-height: 100%;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    width: 100%;
+
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 0 40px;
+
+    background: var(--surface);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.navbar-left {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+/* =========================================================
+   NAVBAR LOGO
+========================================================= */
+
+.navbar-logo {
+
+    color: var(--primary);
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.7px;
+
+    text-decoration: none;
+
+}
+
+
+.navbar-logo:hover {
+
+    color: var(--primary-hover);
+
+}
+
+
+/* =========================================================
+   NAVBAR RIGHT
+========================================================= */
+
+.navbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+/* =========================================================
+   NAVBAR PROFILE
+========================================================= */
+
+.navbar-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text);
+
+    text-decoration: none;
+
+}
+
+
+.navbar-profile:hover {
+
+    color: var(--primary);
+
+}
+
+
+/* =========================================================
+   NAVBAR AVATAR
+========================================================= */
+
+.navbar-avatar {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #e8f0fe;
+
+    color: var(--primary);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.navbar-avatar img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+}
+
+
+/* =========================================================
+   NAVBAR USERNAME
+========================================================= */
+
+.navbar-username {
+
+    max-width: 160px;
+
+    overflow: hidden;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* =========================================================
+   NAVBAR HOME
+========================================================= */
+
+.navbar-home {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 0 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: var(--surface);
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+
+}
+
+
+.navbar-home:hover {
+
+    background: #f1f3f4;
+
+    border-color: var(--border-dark);
+
+    color: var(--text);
+
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.create-meeting-page {
+
+    width: 100%;
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    padding: 50px 20px;
+
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.create-meeting-container {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 38px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(32, 33, 36, 0.08);
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.create-meeting-header {
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+}
+
+
+.meeting-icon {
+
+    width: 64px;
+
+    height: 64px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f0fe;
+
+    font-size: 28px;
+
+}
+
+
+.create-meeting-header h1 {
+
+    color: var(--text);
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+}
+
+
+.create-meeting-header p {
+
+    max-width: 460px;
+
+    margin: 9px auto 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.create-meeting-form {
+
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   FORM ERROR
+========================================================= */
+
+.form-error {
+
+    margin-bottom: 20px;
+
+    padding: 13px 15px;
+
+    border: 1px solid #f3c4c0;
+
+    border-radius: 10px;
+
+    background: var(--danger-background);
+
+    color: var(--danger);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.field-error {
+
+    margin-top: 7px;
+
+    color: var(--danger);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   FORM FIELD
+========================================================= */
+
+.meeting-field {
+
+    margin-bottom: 22px;
+
+}
+
+
+.meeting-field label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.meeting-field input,
+.meeting-field textarea,
+.meeting-field select {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--border-dark);
+
+    border-radius: 9px;
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+
+}
+
+
+.meeting-field input {
+
+    min-height: 46px;
+
+}
+
+
+.meeting-field textarea {
+
+    min-height: 110px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.meeting-field input:focus,
+.meeting-field textarea:focus,
+.meeting-field select:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(26, 115, 232, 0.12);
+
+}
+
+
+/* =========================================================
+   FIELD HELP
+========================================================= */
+
+.field-help {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   MEETING INFORMATION
+========================================================= */
+
+.meeting-info {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 28px;
+
+    margin-bottom: 28px;
+
+    padding: 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: #f8fafd;
+
+}
+
+
+/* =========================================================
+   INFO ITEM
+========================================================= */
+
+.meeting-info-item {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    min-width: 0;
+
+}
+
+
+.meeting-info-icon {
+
+    width: 32px;
+
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background: var(--surface);
+
+    font-size: 16px;
+
+}
+
+
+.meeting-info-item div {
+
+    min-width: 0;
+
+}
+
+
+.meeting-info-item strong {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.meeting-info-item p {
+
+    overflow: hidden;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.meeting-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+
+.meeting-create-button,
+.meeting-cancel-button {
+
+    min-height: 46px;
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 18px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+
+}
+
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+.meeting-create-button {
+
+    border: none;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+}
+
+
+.meeting-create-button:hover {
+
+    background: var(--primary-hover);
+
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.meeting-cancel-button {
+
+    border: 1px solid var(--border-dark);
+
+    background: var(--surface);
+
+    color: var(--text-secondary);
+
+}
+
+
+.meeting-cancel-button:hover {
+
+    background: #f1f3f4;
+
+}
+
+
+/* =========================================================
+   MEETING FOOTER
+========================================================= */
+
+.meeting-footer {
+
+    margin-top: 26px;
+
+    text-align: center;
+
+}
+
+
+.meeting-footer a {
+
+    color: var(--primary);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+}
+
+
+.meeting-footer a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================================================
+   SITE FOOTER
+========================================================= */
+
+.site-footer {
+
+    width: 100%;
+
+    padding: 24px 40px;
+
+    background: var(--surface);
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.footer-content {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+========================================================= */
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+}
+
+
+.footer-logo {
+
+    color: var(--primary);
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.4px;
+
+    text-decoration: none;
+
+}
+
+
+.footer-logo:hover {
+
+    color: var(--primary-hover);
+
+}
+
+
+.footer-brand p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   FOOTER LINKS
+========================================================= */
+
+.footer-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+}
+
+
+.footer-links a {
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        color 0.18s ease;
+
+}
+
+
+.footer-links a:hover {
+
+    color: var(--primary);
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.navbar-logo:focus-visible,
+.navbar-profile:focus-visible,
+.navbar-home:focus-visible,
+.meeting-create-button:focus-visible,
+.meeting-cancel-button:focus-visible,
+.meeting-footer a:focus-visible,
+.footer-logo:focus-visible,
+.footer-links a:focus-visible {
+
+    outline: 3px solid
+        rgba(26, 115, 232, 0.25);
+
+    outline-offset: 3px;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .navbar {
+
+        padding: 0 24px;
+
+    }
+
+
+    .meeting-info {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .site-footer {
+
+        padding:
+            24px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* NAVBAR */
+
+    .navbar {
+
+        min-height: 64px;
+
+        padding: 0 16px;
+
+    }
+
+
+    .navbar-right {
+
+        gap: 10px;
+
+    }
+
+
+    .navbar-username {
+
+        display: none;
+
+    }
+
+
+    .navbar-home {
+
+        min-height: 36px;
+
+        padding: 0 12px;
+
+    }
+
+
+    /* MAIN */
+
+    .create-meeting-page {
+
+        padding: 25px 14px;
+
+    }
+
+
+    .create-meeting-container {
+
+        padding: 26px 18px;
+
+        border-radius: 14px;
+
+    }
+
+
+    /* HEADER */
+
+    .create-meeting-header h1 {
+
+        font-size: 23px;
+
+    }
+
+
+    .create-meeting-header p {
+
+        font-size: 13px;
+
+    }
+
+
+    .meeting-icon {
+
+        width: 58px;
+
+        height: 58px;
+
+        margin-bottom: 14px;
+
+        font-size: 24px;
+
+    }
+
+
+    /* INFO */
+
+    .meeting-info {
+
+        padding: 14px;
+
+    }
+
+
+    /* ACTIONS */
+
+    .meeting-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .meeting-create-button,
+    .meeting-cancel-button {
+
+        width: 100%;
+
+    }
+
+
+    /* SITE FOOTER */
+
+    .site-footer {
+
+        padding: 22px 16px;
+
+    }
+
+
+    .footer-content {
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        text-align: center;
+
+        gap: 16px;
+
+    }
+
+
+    .footer-brand {
+
+        flex-direction: column;
+
+        gap: 6px;
+
+    }
+
+
+    .footer-links {
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 16px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .navbar-logo {
+
+        font-size: 19px;
+
+    }
+
+
+    .navbar-avatar {
+
+        width: 34px;
+
+        height: 34px;
+
+    }
+
+
+    .navbar-home {
+
+        padding: 0 10px;
+
+        font-size: 12px;
+
+    }
+
+
+    .create-meeting-container {
+
+        padding: 22px 15px;
+
+    }
+
+
+    .meeting-field input,
+    .meeting-field textarea {
+
+        font-size: 13px;
+
+    }
+
+}

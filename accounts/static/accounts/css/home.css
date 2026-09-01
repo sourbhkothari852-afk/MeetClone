@@ -1,0 +1,1992 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+
+    background: #ffffff;
+    color: #202124;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+    height: 72px;
+
+    padding: 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e8eaed;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   NAVBAR LEFT
+========================================================= */
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+
+.logo {
+    text-decoration: none;
+
+    font-size: 25px;
+    font-weight: 600;
+
+    color: #1a73e8;
+
+    letter-spacing: -0.5px;
+
+    transition: color 0.2s ease;
+}
+
+
+.logo:hover {
+    color: #1765cc;
+}
+
+
+/* =========================================================
+   NAVBAR RIGHT
+========================================================= */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   USER PROFILE
+========================================================= */
+
+.user-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 5px 8px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color: #3c4043;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.user-profile:hover {
+    background: #f8f9fa;
+
+    transform: translateY(-1px);
+}
+
+
+.user-profile:focus-visible {
+    outline: 2px solid #1a73e8;
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   PROFILE AVATAR
+========================================================= */
+
+.avatar {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #e8f0fe;
+
+    color: #1a73e8;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    line-height: 1;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    flex-shrink: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    background: #e8f0fe;
+}
+
+
+/* =========================================================
+   USERNAME
+========================================================= */
+
+.username {
+    max-width: 180px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #3c4043;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout-btn {
+    text-decoration: none;
+
+    padding: 10px 17px;
+
+    border: 1px solid #dadce0;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #3c4043;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.logout-btn:hover {
+    background: #f8f9fa;
+
+    border-color: #c7c9cc;
+
+    color: #202124;
+}
+
+
+.logout-btn:focus-visible {
+    outline: 2px solid #1a73e8;
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.main-container {
+    width: 100%;
+
+    max-width: 1240px;
+
+    margin: 0 auto;
+
+    padding: 0 42px 70px;
+}
+
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero-section {
+    min-height: 520px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 70px;
+
+    padding: 70px 0;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+    flex: 1;
+
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   HERO LABEL
+========================================================= */
+
+.hero-label {
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #1a73e8;
+}
+
+
+/* =========================================================
+   HERO HEADING
+========================================================= */
+
+.hero-content h1 {
+    font-size: 54px;
+
+    line-height: 1.08;
+
+    font-weight: 500;
+
+    letter-spacing: -2px;
+
+    color: #202124;
+}
+
+
+.hero-content h1 span {
+    color: #1a73e8;
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
+.hero-content > p {
+    max-width: 560px;
+
+    margin-top: 24px;
+
+    font-size: 18px;
+
+    line-height: 1.65;
+
+    color: #5f6368;
+}
+
+
+/* =========================================================
+   MEETING ACTIONS
+========================================================= */
+
+.meeting-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 38px;
+}
+
+
+/* =========================================================
+   NEW MEETING BUTTON
+========================================================= */
+
+.new-meeting-btn {
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 0 21px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1a73e8;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.new-meeting-btn:hover {
+    background: #1765cc;
+
+    box-shadow:
+        0 3px 10px rgba(26, 115, 232, 0.25);
+
+    transform: translateY(-1px);
+}
+
+
+.new-meeting-btn:focus-visible {
+    outline: 2px solid #1a73e8;
+
+    outline-offset: 3px;
+}
+
+
+.button-icon {
+    font-size: 23px;
+
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   JOIN FORM
+========================================================= */
+
+.join-form {
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid #dadce0;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.join-form:focus-within {
+    border-color: #1a73e8;
+
+    box-shadow:
+        0 0 0 2px rgba(26, 115, 232, 0.12);
+}
+
+
+/* =========================================================
+   JOIN INPUT WRAPPER
+========================================================= */
+
+.join-input-wrapper {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    padding-left: 14px;
+}
+
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
+
+.input-icon {
+    margin-right: 8px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #5f6368;
+}
+
+
+/* =========================================================
+   JOIN INPUT
+========================================================= */
+
+.join-input-wrapper input {
+    width: 230px;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 14px;
+
+    color: #202124;
+}
+
+
+.join-input-wrapper input::placeholder {
+    color: #80868b;
+}
+
+
+/* =========================================================
+   JOIN BUTTON
+========================================================= */
+
+.join-btn {
+    height: 100%;
+
+    padding: 0 19px;
+
+    border: none;
+
+    border-left: 1px solid #dadce0;
+
+    background: #ffffff;
+
+    color: #1a73e8;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.join-btn:hover {
+    background: #f8faff;
+
+    color: #1765cc;
+}
+
+
+.join-btn:focus-visible {
+    outline: 2px solid #1a73e8;
+
+    outline-offset: -2px;
+}
+
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual {
+    width: 470px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   VIDEO PREVIEW
+========================================================= */
+
+.video-preview {
+    width: 100%;
+
+    border: 1px solid #dadce0;
+
+    border-radius: 18px;
+
+    background: #202124;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 18px 45px rgba(60, 64, 67, 0.16);
+}
+
+
+/* =========================================================
+   PREVIEW HEADER
+========================================================= */
+
+.preview-header {
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    gap: 9px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    background: #292a2d;
+}
+
+
+.preview-dot {
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #34a853;
+}
+
+
+/* =========================================================
+   PREVIEW SCREEN
+========================================================= */
+
+.preview-screen {
+    height: 275px;
+
+    padding: 18px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    background: #17181a;
+}
+
+
+/* =========================================================
+   PREVIEW USER
+========================================================= */
+
+.preview-user {
+    position: relative;
+
+    min-height: 115px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #3c4043;
+
+    overflow: hidden;
+}
+
+
+.preview-user span {
+    position: absolute;
+
+    bottom: 9px;
+
+    left: 10px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   PREVIEW AVATAR
+========================================================= */
+
+.preview-avatar {
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #5f6368;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    overflow: hidden;
+}
+
+
+.preview-avatar img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+
+/* =========================================================
+   SMALL PARTICIPANT
+========================================================= */
+
+.small-user {
+    background: #303134;
+}
+
+
+/* =========================================================
+   PREVIEW CONTROLS
+========================================================= */
+
+.preview-controls {
+    height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    background: #202124;
+}
+
+
+.preview-controls span {
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #3c4043;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   RECENT MEETINGS
+========================================================= */
+
+.recent-section {
+    padding-top: 55px;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header h2 {
+    font-size: 24px;
+
+    font-weight: 500;
+
+    color: #202124;
+}
+
+
+.section-header p {
+    margin-top: 7px;
+
+    font-size: 14px;
+
+    color: #80868b;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    margin-top: 25px;
+
+    min-height: 270px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 14px;
+
+    background: #fafafa;
+}
+
+
+/* =========================================================
+   EMPTY ICON
+========================================================= */
+
+.empty-icon {
+    width: 62px;
+
+    height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f0fe;
+
+    font-size: 27px;
+}
+
+
+/* =========================================================
+   EMPTY HEADING
+========================================================= */
+
+.empty-state h3 {
+    margin-top: 17px;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    color: #3c4043;
+}
+
+
+/* =========================================================
+   EMPTY DESCRIPTION
+========================================================= */
+
+.empty-state p {
+    max-width: 420px;
+
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #80868b;
+}
+
+
+/* =========================================================
+   EMPTY ACTION
+========================================================= */
+
+.empty-action {
+    margin-top: 20px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #dadce0;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #1a73e8;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.empty-action:hover {
+    background: #f8faff;
+
+    border-color: #1a73e8;
+}
+
+
+/* =========================================================
+   RECENT MEETINGS LIST
+========================================================= */
+
+.recent-meetings-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-top: 25px;
+
+}
+
+
+/* =========================================================
+   RECENT MEETING CARD
+========================================================= */
+
+.recent-meeting-card {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    padding: 20px 22px;
+
+    border: 1px solid #e8eaed;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 2px 8px rgba(
+            60,
+            64,
+            67,
+            0.05
+        );
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.recent-meeting-card:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #d2e3fc;
+
+    box-shadow:
+        0 8px 24px rgba(
+            60,
+            64,
+            67,
+            0.10
+        );
+
+}
+
+
+/* =========================================================
+   MEETING HISTORY ICON
+========================================================= */
+
+.meeting-history-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    min-width: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #e8f0fe;
+
+    font-size: 22px;
+
+}
+
+
+/* =========================================================
+   JOINED MEETING ICON
+========================================================= */
+
+.joined-icon {
+
+    background: #e6f4ea;
+
+}
+
+
+/* =========================================================
+   MEETING HISTORY CONTENT
+========================================================= */
+
+.meeting-history-content {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+/* =========================================================
+   MEETING TOP
+========================================================= */
+
+.meeting-history-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+}
+
+
+/* =========================================================
+   MEETING TITLE
+========================================================= */
+
+.meeting-history-top h3 {
+
+    margin: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #202124;
+
+}
+
+
+/* =========================================================
+   MEETING STATUS
+========================================================= */
+
+.meeting-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    padding: 6px 11px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+}
+
+
+/* =========================================================
+   SCHEDULED STATUS
+========================================================= */
+
+.meeting-status.scheduled {
+
+    background: #fef7e0;
+
+    color: #b06000;
+
+}
+
+
+/* =========================================================
+   LIVE STATUS
+========================================================= */
+
+.meeting-status.live {
+
+    background: #e6f4ea;
+
+    color: #137333;
+
+}
+
+
+/* =========================================================
+   COMPLETED STATUS
+========================================================= */
+
+.meeting-status.completed {
+
+    background: #f1f3f4;
+
+    color: #5f6368;
+
+}
+
+
+/* =========================================================
+   CANCELLED STATUS
+========================================================= */
+
+.meeting-status.cancelled {
+
+    background: #fce8e6;
+
+    color: #c5221f;
+
+}
+
+
+/* =========================================================
+   MEETING CODE
+========================================================= */
+
+.meeting-code {
+
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    color: #5f6368;
+
+}
+
+
+.meeting-code strong {
+
+    margin-left: 4px;
+
+    padding: 3px 7px;
+
+    border-radius: 5px;
+
+    background: #f1f3f4;
+
+    color: #202124;
+
+    font-family:
+        monospace;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.4px;
+
+}
+
+
+/* =========================================================
+   MEETING META
+========================================================= */
+
+.meeting-history-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    color: #80868b;
+
+}
+
+
+.meeting-history-meta strong {
+
+    color: #3c4043;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   RECENT MEETINGS TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .recent-meetings-list {
+
+        gap: 12px;
+
+    }
+
+
+    .recent-meeting-card {
+
+        padding: 17px;
+
+        gap: 14px;
+
+    }
+
+
+    .meeting-history-top {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 9px;
+
+    }
+
+
+    .meeting-history-top h3 {
+
+        width: 100%;
+
+        white-space: normal;
+
+    }
+
+
+    .meeting-history-icon {
+
+        width: 46px;
+
+        height: 46px;
+
+        min-width: 46px;
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RECENT MEETINGS SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .recent-meeting-card {
+
+        padding: 15px;
+
+        gap: 12px;
+
+    }
+
+
+    .meeting-history-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+        min-width: 42px;
+
+        font-size: 18px;
+
+    }
+
+
+    .meeting-history-top h3 {
+
+        font-size: 16px;
+
+    }
+
+
+    .meeting-status {
+
+        padding: 5px 9px;
+
+        font-size: 11px;
+
+    }
+
+
+    .meeting-code {
+
+        font-size: 13px;
+
+    }
+
+
+    .meeting-history-meta {
+
+        font-size: 12px;
+
+    }
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    min-height: 70px;
+
+    padding: 0 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-top: 1px solid #eeeeee;
+
+    color: #80868b;
+
+    font-size: 13px;
+}
+
+
+.footer-links {
+    display: flex;
+
+    gap: 22px;
+}
+
+
+.footer-links a {
+    text-decoration: none;
+
+    color: #5f6368;
+
+    transition: color 0.2s ease;
+}
+
+
+.footer-links a:hover {
+    color: #1a73e8;
+}
+
+
+.footer-links a:focus-visible {
+    outline: 2px solid #1a73e8;
+
+    outline-offset: 3px;
+
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .hero-section {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 45px;
+    }
+
+
+    .hero-visual {
+        width: 100%;
+
+        max-width: 600px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        height: 64px;
+
+        padding: 0 18px;
+    }
+
+
+    .logo {
+        font-size: 22px;
+    }
+
+
+    .username {
+        display: none;
+    }
+
+
+    .navbar-right {
+        gap: 10px;
+    }
+
+
+    .main-container {
+        padding: 0 18px 50px;
+    }
+
+
+    .hero-section {
+        min-height: auto;
+
+        padding: 50px 0;
+    }
+
+
+    .hero-content h1 {
+        font-size: 38px;
+
+        letter-spacing: -1.2px;
+    }
+
+
+    .hero-content > p {
+        font-size: 16px;
+    }
+
+
+    .meeting-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        width: 100%;
+    }
+
+
+    .new-meeting-btn {
+        justify-content: center;
+
+        width: 100%;
+    }
+
+
+    .join-form {
+        width: 100%;
+    }
+
+
+    .join-input-wrapper {
+        flex: 1;
+    }
+
+
+    .join-input-wrapper input {
+        width: 100%;
+    }
+
+
+    .hero-visual {
+        width: 100%;
+    }
+
+
+    .preview-screen {
+        height: 210px;
+    }
+
+
+    .recent-section {
+        padding-top: 40px;
+    }
+
+
+    .footer {
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .navbar {
+        padding: 0 14px;
+    }
+
+
+    .logo {
+        font-size: 20px;
+    }
+
+
+    .logout-btn {
+        padding: 8px 12px;
+
+        font-size: 13px;
+    }
+
+
+    .avatar {
+        width: 36px;
+
+        height: 36px;
+
+        min-width: 36px;
+
+        min-height: 36px;
+    }
+
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+
+    .preview-screen {
+        padding: 12px;
+
+        gap: 8px;
+    }
+
+
+    .preview-avatar {
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 18px;
+    }
+
+
+    .preview-controls span {
+        width: 34px;
+
+        height: 34px;
+    }
+
+}/* =========================================================
+   NOTIFICATIONS LINK
+========================================================= */
+
+.notification-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    border-radius: 8px;
+
+    color: #3c4043;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.notification-link:hover {
+    background: #f1f3f4;
+
+    color: #1a73e8;
+}/* =========================================================
+   FINAL NAVBAR PROFILE FIX
+========================================================= */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 18px;
+
+    margin-left: auto;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PROFILE LINK
+========================================================= */
+
+.user-profile {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 5px 8px;
+
+    width: auto;
+    min-width: max-content;
+
+    overflow: visible;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   PROFILE AVATAR
+========================================================= */
+
+.user-profile .avatar {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #e8f0fe;
+
+    color: #1a73e8;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.user-profile .avatar img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   USERNAME
+========================================================= */
+
+.user-profile .username {
+    display: block;
+
+    width: auto;
+    max-width: none;
+
+    overflow: visible;
+
+    text-overflow: clip;
+
+    white-space: nowrap;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #3c4043;
+}
+
+
+/* =========================================================
+   NOTIFICATION LINK
+========================================================= */
+
+.notification-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout-btn {
+    flex-shrink: 0;
+
+    white-space: nowrap;
+}
+
+/* =========================================================
+   NOTIFICATION UNREAD BADGE
+========================================================= */
+
+.notification-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    text-decoration: none;
+}
+
+
+.notification-icon {
+    font-size: 18px;
+}
+
+
+.notification-text {
+    white-space: nowrap;
+}
+
+
+.notification-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 20px;
+    height: 20px;
+
+    padding: 0 6px;
+
+    border-radius: 50px;
+
+    background: #e53935;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+/* =========================================================
+   DELETE / REMOVE MEETING
+========================================================= */
+
+.delete-meeting-form {
+
+    margin: 0;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: flex-start;
+
+}
+
+
+.delete-meeting-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #e8eaed;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.delete-meeting-btn:hover {
+
+    background: #fce8e6;
+
+    border-color: #ea4335;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 12px rgba(
+            234,
+            67,
+            53,
+            0.15
+        );
+
+}
+
+
+.delete-meeting-btn:active {
+
+    transform: translateY(0);
+
+}
+
+
+.delete-meeting-btn:focus-visible {
+
+    outline: 3px solid rgba(
+        234,
+        67,
+        53,
+        0.25
+    );
+
+    outline-offset: 3px;
+
+}
+
+
+/* =========================================================
+   MOBILE DELETE BUTTON
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .recent-meeting-card {
+
+        position: relative;
+
+        padding-right: 62px;
+
+    }
+
+
+    .delete-meeting-form {
+
+        position: absolute;
+
+        top: 17px;
+
+        right: 17px;
+
+    }
+
+
+    .delete-meeting-btn {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .recent-meeting-card {
+
+        padding-right: 58px;
+
+    }
+
+
+    .delete-meeting-form {
+
+        top: 15px;
+
+        right: 15px;
+
+    }
+
+
+    .delete-meeting-btn {
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 15px;
+
+    }
+
+}

@@ -1,0 +1,509 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Privacy Settings - MeetClone
+    </title>
+
+
+    <!-- =====================================================
+         PRIVACY CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/privacy.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+
+        <div class="navbar-left">
+
+            <a
+                href="{% url 'home' %}"
+                class="logo"
+            >
+                MeetClone
+            </a>
+
+        </div>
+
+
+        <div class="navbar-right">
+
+            <a
+                href="{% url 'profile' %}"
+                class="profile-link"
+            >
+                Profile
+            </a>
+
+
+            <a
+                href="{% url 'account_settings' %}"
+                class="settings-link"
+            >
+                Settings
+            </a>
+
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout-btn"
+            >
+                Logout
+            </a>
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="privacy-page">
+
+
+        <div class="privacy-container">
+
+
+            <!-- =================================================
+                 PAGE HEADER
+            ================================================== -->
+
+            <section class="privacy-header">
+
+
+                <div
+                    class="privacy-icon"
+                    aria-hidden="true"
+                >
+                    🛡️
+                </div>
+
+
+                <div class="privacy-header-content">
+
+
+                    <span class="page-label">
+                        ACCOUNT SETTINGS
+                    </span>
+
+
+                    <h1>
+                        Privacy Settings
+                    </h1>
+
+
+                    <p>
+                        Control who can see your profile and
+                        interact with your account.
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 PRIVACY FORM
+            ================================================== -->
+
+            <form
+                method="POST"
+                class="privacy-form"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =============================================
+                     NON-FIELD ERRORS
+                ============================================== -->
+
+                {% if form.non_field_errors %}
+
+                    <div class="privacy-error">
+
+                        {{ form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- =================================================
+                     PROFILE VISIBILITY
+                ================================================== -->
+
+                <section class="privacy-section">
+
+
+                    <div class="privacy-section-header">
+
+
+                        <div
+                            class="section-icon"
+                            aria-hidden="true"
+                        >
+                            👤
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Profile Visibility
+                            </h2>
+
+
+                            <p>
+                                Choose who can see your profile.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- FIELD ERRORS -->
+
+                    {% if form.profile_visibility.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.profile_visibility.errors }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="privacy-options">
+
+
+                        {% for radio in form.profile_visibility %}
+
+                            <label class="privacy-option">
+
+
+                                {{ radio.tag }}
+
+
+                                <span class="privacy-option-content">
+
+
+                                    <strong>
+                                        {{ radio.choice_label }}
+                                    </strong>
+
+
+                                    {% if radio.choice_value == "everyone" %}
+
+                                        <small>
+                                            Anyone can view your profile.
+                                        </small>
+
+
+                                    {% elif radio.choice_value == "followers" %}
+
+                                        <small>
+                                            Only people you follow can
+                                            view your profile.
+                                        </small>
+
+
+                                    {% elif radio.choice_value == "private" %}
+
+                                        <small>
+                                            Your profile is visible only
+                                            to you.
+                                        </small>
+
+
+                                    {% endif %}
+
+
+                                </span>
+
+
+                            </label>
+
+                        {% endfor %}
+
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- =================================================
+                     MESSAGE PRIVACY
+                ================================================== -->
+
+                <section class="privacy-section">
+
+
+                    <div class="privacy-section-header">
+
+
+                        <div
+                            class="section-icon"
+                            aria-hidden="true"
+                        >
+                            💬
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Who can message you?
+                            </h2>
+
+
+                            <p>
+                                Choose who can send you messages.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- FIELD ERRORS -->
+
+                    {% if form.message_privacy.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.message_privacy.errors }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="privacy-options">
+
+
+                        {% for radio in form.message_privacy %}
+
+                            <label class="privacy-option">
+
+
+                                {{ radio.tag }}
+
+
+                                <span class="privacy-option-content">
+
+
+                                    <strong>
+                                        {{ radio.choice_label }}
+                                    </strong>
+
+
+                                    {% if radio.choice_value == "everyone" %}
+
+                                        <small>
+                                            Anyone can send you a message.
+                                        </small>
+
+
+                                    {% elif radio.choice_value == "followers" %}
+
+                                        <small>
+                                            Only people you follow can
+                                            message you.
+                                        </small>
+
+
+                                    {% elif radio.choice_value == "no_one" %}
+
+                                        <small>
+                                            Nobody can send you a message.
+                                        </small>
+
+
+                                    {% endif %}
+
+
+                                </span>
+
+
+                            </label>
+
+                        {% endfor %}
+
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- =================================================
+                     PRIVACY INFORMATION
+                ================================================== -->
+
+                <section class="privacy-info">
+
+
+                    <div
+                        class="privacy-info-icon"
+                        aria-hidden="true"
+                    >
+                        🔒
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Your privacy matters
+                        </h3>
+
+
+                        <p>
+                            These settings control how other users
+                            can interact with your MeetClone account.
+                            You can update them at any time.
+                        </p>
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- =================================================
+                     ACTIONS
+                ================================================== -->
+
+                <div class="privacy-actions">
+
+
+                    <a
+                        href="{% url 'account_settings' %}"
+                        class="privacy-cancel"
+                    >
+                        Cancel
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="privacy-save"
+                    >
+                        <span aria-hidden="true">
+                            ✓
+                        </span>
+
+                        Save Privacy Settings
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+            <!-- =================================================
+                 BACK TO PROFILE
+            ================================================== -->
+
+            <div class="privacy-footer">
+
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="back-profile-link"
+                >
+                    ← Back to Profile
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <p>
+            © 2026 MeetClone
+        </p>
+
+
+        <div class="footer-links">
+
+
+            <a href="{% url 'privacy' %}">
+                Privacy
+            </a>
+
+
+            <a href="{% url 'terms' %}">
+             Terms & Conditions
+            </a>
+
+
+            <a href="{% url 'help' %}">
+                Help
+            </a>
+
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

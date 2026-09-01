@@ -1,0 +1,485 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Account Settings - MeetClone
+    </title>
+
+
+    <!-- =====================================================
+         ACCOUNT SETTINGS CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/account_settings.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+
+        <div class="navbar-left">
+
+            <a
+                href="{% url 'home' %}"
+                class="logo"
+            >
+                MeetClone
+            </a>
+
+        </div>
+
+
+        <div class="navbar-right">
+
+
+            <a
+                href="{% url 'home' %}"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{% url 'profile' %}"
+                class="nav-link"
+            >
+                Profile
+            </a>
+
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout-btn"
+            >
+                Logout
+            </a>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="settings-page">
+
+
+        <div class="settings-container">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <section class="settings-header">
+
+
+                <div
+                    class="settings-icon"
+                    aria-hidden="true"
+                >
+                    ⚙️
+                </div>
+
+
+                <div class="settings-header-content">
+
+
+                    <span class="settings-label">
+                        MEETCLONE ACCOUNT
+                    </span>
+
+
+                    <h1>
+                        Account Settings
+                    </h1>
+
+
+                    <p>
+                        Manage your MeetClone account,
+                        privacy, security and preferences.
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACCOUNT SUMMARY
+            ================================================== -->
+
+            <section class="settings-account">
+
+
+                <!-- PROFILE PICTURE -->
+
+                <div class="settings-account-avatar">
+
+
+                    {% if request.user.profile.profile_picture %}
+
+                        <img
+                            src="{{ request.user.profile.profile_picture.url }}"
+                            alt="{{ request.user.username }}"
+                        >
+
+                    {% else %}
+
+                        {{ request.user.username|first|upper }}
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- USER INFORMATION -->
+
+                <div class="settings-account-info">
+
+
+                    <span class="settings-account-label">
+                        Signed in as
+                    </span>
+
+
+                    <h2>
+                        {{ request.user.username }}
+                    </h2>
+
+
+                    {% if request.user.email %}
+
+                        <p>
+                            {{ request.user.email }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            No email address added
+                        </p>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SETTINGS SECTION HEADER
+            ================================================== -->
+
+            <div class="settings-section-heading">
+
+
+                <h2>
+                    Account Preferences
+                </h2>
+
+
+                <p>
+                    Select an option to manage your account.
+                </p>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SETTINGS LIST
+            ================================================== -->
+
+            <section class="settings-list">
+
+
+                <!-- =============================================
+                     PROFILE
+                ============================================== -->
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="settings-card"
+                >
+
+
+                    <div class="settings-card-icon">
+                        👤
+                    </div>
+
+
+                    <div class="settings-card-content">
+
+
+                        <h3>
+                            Profile
+                        </h3>
+
+
+                        <p>
+                            Manage your name, username, email
+                            and profile picture.
+                        </p>
+
+
+                    </div>
+
+
+                    <div
+                        class="settings-card-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- =============================================
+                     SECURITY
+                ============================================== -->
+
+                <a
+                    href="{% url 'change_password' %}"
+                    class="settings-card"
+                >
+
+
+                    <div class="settings-card-icon">
+                        🔐
+                    </div>
+
+
+                    <div class="settings-card-content">
+
+
+                        <h3>
+                            Security
+                        </h3>
+
+
+                        <p>
+                            Change your password and manage
+                            account security.
+                        </p>
+
+
+                    </div>
+
+
+                    <div
+                        class="settings-card-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- =============================================
+                     PRIVACY
+                ============================================== -->
+
+                <a
+                    href="{% url 'privacy' %}"
+                    class="settings-card"
+                >
+
+
+                    <div class="settings-card-icon">
+                        🛡️
+                    </div>
+
+
+                    <div class="settings-card-content">
+
+
+                        <h3>
+                            Privacy
+                        </h3>
+
+
+                        <p>
+                            Control who can interact with you
+                            and manage your account privacy.
+                        </p>
+
+
+                    </div>
+
+
+                    <div
+                        class="settings-card-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- =============================================
+                     NOTIFICATIONS
+                ============================================== -->
+
+                <a
+                    href="{% url 'notifications' %}"
+                    class="settings-card"
+                >
+
+
+                    <div class="settings-card-icon">
+                        🔔
+                    </div>
+
+
+                    <div class="settings-card-content">
+
+
+                        <h3>
+                            Notifications
+                        </h3>
+
+
+                        <p>
+                            View your meeting and account
+                            notifications.
+                        </p>
+
+
+                    </div>
+
+
+                    <div
+                        class="settings-card-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </div>
+
+
+                </a>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FOOTER ACTIONS
+            ================================================== -->
+
+            <div class="settings-actions">
+
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="settings-button"
+                >
+                    Back to Profile
+                </a>
+
+
+                <a
+                    href="{% url 'home' %}"
+                    class="settings-button secondary"
+                >
+                    Back to Home
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <p>
+            © 2026 MeetClone
+        </p>
+
+
+        <div class="footer-links">
+
+
+            <a href="{% url 'privacy' %}">
+                Privacy
+            </a>
+
+
+            <a href="{% url 'terms' %}">
+                Terms &amp; Conditions
+            </a>
+
+
+            <a href="{% url 'help' %}">
+                Help
+            </a>
+
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Account Information - MeetClone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/account_info.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="account-info-page">
+
+        <div class="account-info-container">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <section class="account-info-header">
+
+                <div
+                    class="account-info-icon"
+                    aria-hidden="true"
+                >
+                    ℹ️
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Account Information
+                    </h1>
+
+                    <p>
+                        View your MeetClone account details.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ACCOUNT DETAILS
+            ================================================== -->
+
+            <section class="account-details">
+
+
+                <!-- =================================================
+                     ACCOUNT ID
+                ================================================== -->
+
+                <div class="account-detail-row">
+
+                    <div class="account-detail-content">
+
+                        <span class="account-detail-label">
+                            Account ID
+                        </span>
+
+                        <strong class="account-detail-value">
+                            {{ user.id }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     USERNAME
+                ================================================== -->
+
+                <div class="account-detail-row">
+
+                    <div class="account-detail-content">
+
+                        <span class="account-detail-label">
+                            Username
+                        </span>
+
+                        <strong class="account-detail-value">
+                            {{ user.username }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     EMAIL
+                ================================================== -->
+
+                <div class="account-detail-row">
+
+                    <div class="account-detail-content">
+
+                        <span class="account-detail-label">
+                            Email
+                        </span>
+
+                        <strong class="account-detail-value">
+                            {% if user.email %}
+                                {{ user.email }}
+                            {% else %}
+                                Not provided
+                            {% endif %}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FIRST NAME
+                ================================================== -->
+
+                <div class="account-detail-row">
+
+                    <div class="account-detail-content">
+
+                        <span class="account-detail-label">
+                            First Name
+                        </span>
+
+                        <strong class="account-detail-value">
+
+                            {% if user.first_name %}
+                                {{ user.first_name }}
+                            {% else %}
+                                Not provided
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     LAST NAME
+                ================================================== -->
+
+                <div class="account-detail-row">
+
+                    <div class="account-detail-content">
+
+                        <span class="account-detail-label">
+                            Last Name
+                        </span>
+
+                        <strong class="account-detail-value">
+
+                            {% if user.last_name %}
+                                {{ user.last_name }}
+                            {% else %}
+                                Not provided
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     DATE JOINED
+                ================================================== -->
+
+                <div class="account-detail-row">
+
+                    <div class="account-detail-content">
+
+                        <span class="account-detail-label">
+                            Date Joined
+                        </span>
+
+                        <strong class="account-detail-value">
+
+                            {{ user.date_joined|date:"d F Y, h:i A" }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ACCOUNT STATUS
+                ================================================== -->
+
+                <div class="account-detail-row">
+
+                    <div class="account-detail-content">
+
+                        <span class="account-detail-label">
+                            Account Status
+                        </span>
+
+                        <strong class="account-status active">
+                            Active
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 INFORMATION NOTE
+            ================================================== -->
+
+            <div class="account-info-note">
+
+                <strong>
+                    Account information
+                </strong>
+
+                <p>
+                    These details are associated with your
+                    MeetClone account. To change your personal
+                    information, use Edit Profile.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTIONS
+            ================================================== -->
+
+            <div class="account-info-actions">
+
+                <a
+                    href="{% url 'edit_profile' %}"
+                    class="account-info-primary"
+                >
+                    Edit Profile
+                </a>
+
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="account-info-secondary"
+                >
+                    Back to Profile
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <div class="account-info-footer">
+
+                <a
+                    href="{% url 'accounts_home' %}"
+                >
+                    Back to Account
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

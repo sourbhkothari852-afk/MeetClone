@@ -1,0 +1,1939 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {{ meeting.title }} - MeetClone
+    </title>
+
+    <link rel="stylesheet" href="{% static 'meetings/css/meeting_room.css' %}">
+
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+    <style>
+        .meeting-control.end-meeting {
+            border-color: #6b3030;
+            background: #2a1b1b;
+        }
+
+        .meeting-control.end-meeting:hover {
+            background: #3a2222;
+        }
+
+        .meeting-control.end-meeting:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="meeting-room">
+
+        <!-- =================================================
+         MEETING HEADER
+    ================================================== -->
+
+        <header class="meeting-room-header">
+
+            <div class="meeting-room-brand">
+
+                <div class="meeting-brand-icon">
+                    🎥
+                </div>
+
+                <div class="meeting-room-title">
+
+                    <h1>
+                        {{ meeting.title }}
+                    </h1>
+
+                    <div class="meeting-meta">
+
+                        <span class="meeting-code-label">
+                            Meeting Code
+                        </span>
+
+                        <span class="meeting-code">
+                            {{ meeting.meeting_code }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Connection Status -->
+
+            <div class="meeting-room-status" aria-live="polite">
+
+                <span class="status-dot" id="statusDot" aria-hidden="true"></span>
+
+                <span id="meetingStatus">
+                    Connecting...
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+         MAIN VIDEO AREA
+    ================================================== -->
+
+        <section class="video-area" aria-label="Meeting participants">
+
+
+            <!-- =============================================
+             LOCAL PARTICIPANT
+        ============================================== -->
+
+            <article class="video-tile local-video" aria-label="Your video">
+
+                <!-- Camera Placeholder -->
+
+                <div class="camera-placeholder">
+
+                    <div class="camera-icon" aria-hidden="true">
+                        📹
+                    </div>
+
+                    <h2>
+                        Camera Preview
+                    </h2>
+
+                    <p>
+                        Your camera will appear here
+                    </p>
+
+                </div>
+
+
+                <!-- Participant Information -->
+
+                <div class="participant-overlay">
+
+                    <div class="participant-info">
+
+                        <span class="participant-status-dot" aria-hidden="true"></span>
+
+                        <span class="participant-name">
+                            You
+                        </span>
+
+                    </div>
+
+
+                    <div class="participant-media-status">
+
+                        <span class="participant-mic-status" aria-hidden="true">
+                            🎤
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- =============================================
+             REMOTE PARTICIPANT
+        ============================================== -->
+
+            <article class="video-tile remote-video" id="remoteVideoTile" style="display: none;"
+                aria-label="Remote participant">
+
+                <video id="remoteVideo" autoplay playsinline></video>
+
+
+                <!-- Remote Participant Information -->
+
+                <div class="participant-overlay">
+
+                    <div class="participant-info">
+
+                        <span class="participant-status-dot" aria-hidden="true"></span>
+
+                        <span class="participant-name">
+                            Participant
+                        </span>
+
+                    </div>
+
+
+                    <div class="participant-media-status">
+
+                        <span class="participant-mic-status" aria-hidden="true">
+                            🎤
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- =============================================
+             WAITING STATE
+        ============================================== -->
+
+            <div class="waiting-area" id="waitingArea">
+
+                <div class="waiting-card" role="status" aria-live="polite">
+
+                    <div class="waiting-icon" aria-hidden="true">
+                        👥
+                    </div>
+
+
+                    <h2>
+                        Waiting for a participant
+                    </h2>
+
+
+                    <p>
+                        Your meeting is ready.
+                        Share the meeting code to invite someone.
+                    </p>
+
+
+                    <div class="waiting-meeting-code">
+
+                        <span>
+                            Meeting Code
+                        </span>
+
+                        <strong>
+                            {{ meeting.meeting_code }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+         MEETING CONTROLS
+    ================================================== -->
+
+        <footer class="meeting-controls" aria-label="Meeting controls">
+
+            <div class="meeting-control-group">
+
+
+                <!-- =========================================
+                 MICROPHONE
+            ========================================== -->
+
+                <button type="button" class="meeting-control" id="microphoneButton" aria-label="Mute microphone"
+                    title="Mute microphone">
+
+                    <span class="control-icon" aria-hidden="true">
+                        🎤
+                    </span>
+
+                    <span>
+                        Mic
+                    </span>
+
+                </button>
+
+
+                <!-- =========================================
+                 CAMERA
+            ========================================== -->
+
+                <button type="button" class="meeting-control" id="cameraButton" aria-label="Turn camera off"
+                    title="Turn camera off">
+
+                    <span class="control-icon" aria-hidden="true">
+                        📹
+                    </span>
+
+                    <span>
+                        Camera
+                    </span>
+
+                </button>
+
+
+                <!-- =========================================
+     LEAVE MEETING
+========================================== -->
+
+                <form method="POST" action="{% url 'leave_meeting' meeting.id %}" id="leaveMeetingForm">
+
+                    {% csrf_token %}
+
+                    <button type="button" class="meeting-control leave" id="leaveButton" aria-label="Leave meeting"
+                        title="Leave meeting">
+
+                        <span class="control-icon" aria-hidden="true">
+                            📞
+                        </span>
+
+                        <span>
+                            Leave
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+
+
+                <!-- =========================================
+                                END MEETING
+                ========================================== -->
+
+                <form method="POST" action="{% url 'end_meeting' meeting.id %}" id="endMeetingForm">
+
+                    {% csrf_token %}
+
+                    <button type="button" class="meeting-control end-meeting" id="endMeetingButton"
+                        aria-label="End meeting" title="End meeting">
+
+                        <span class="control-icon" aria-hidden="true">
+                            🛑
+                        </span>
+
+                        <span>
+                            End
+                        </span>
+
+                    </button>
+
+                </form>
+                <!-- =========================================
+     CANCEL MEETING - HOST ONLY
+========================================== -->
+
+                {% if meeting.host == request.user %}
+
+                <form method="POST" action="{% url 'cancel_meeting' meeting.id %}" class="cancel-meeting-form" onsubmit="return confirm(
+        'Are you sure you want to cancel this meeting?'
+    );">
+
+                    {% csrf_token %}
+
+                    <button type="submit" class="meeting-control cancel-meeting" aria-label="Cancel meeting"
+                        title="Cancel meeting">
+
+                        <span class="control-icon" aria-hidden="true">
+                            ❌
+                        </span>
+
+                        <span>
+                            Cancel
+                        </span>
+
+                    </button>
+
+                </form>
+
+                {% endif %}
+            </div>
+
+
+
+        </footer>
+
+
+    </main>
+
+
+
+
+
+
+</body>
+<script>
+    //   <!-- =========================================================
+    //  WEBRTC + MEETING JAVASCRIPT
+    // ========================================================== -->
+
+
+
+    // =====================================================
+    // DOM ELEMENTS
+    // =====================================================
+
+    const microphoneButton =
+        document.getElementById("microphoneButton");
+
+    const cameraButton =
+        document.getElementById("cameraButton");
+
+    const leaveButton =
+        document.getElementById("leaveButton");
+
+    const endMeetingButton =
+        document.getElementById("endMeetingButton");
+
+    const remoteVideo =
+        document.getElementById("remoteVideo");
+
+    const remoteVideoTile =
+        document.getElementById("remoteVideoTile");
+
+    const waitingArea =
+        document.getElementById("waitingArea");
+
+    const meetingStatus =
+        document.getElementById("meetingStatus");
+
+    const statusDot =
+        document.getElementById("statusDot");
+
+
+    // =====================================================
+    // STATE
+    // =====================================================
+
+    let localStream = null;
+    let remoteStream = null;
+    let meetingSocket = null;
+    let peerConnection = null;
+
+    let microphoneEnabled = true;
+    let cameraEnabled = true;
+    let isLeaving = false;
+
+    let pendingIceCandidates = [];
+
+
+    // =====================================================
+    // WEBRTC CONFIGURATION
+    // =====================================================
+
+    const rtcConfiguration = {
+
+        iceServers: [
+
+            {
+                urls:
+                    "stun:stun.l.google.com:19302"
+            }
+
+        ]
+
+    };
+
+
+    // =====================================================
+    // MEETING STATUS
+    // =====================================================
+
+    function setMeetingStatus(
+        message,
+        connected = false
+    ) {
+
+        if (meetingStatus) {
+
+            meetingStatus.textContent =
+                message;
+
+        }
+
+        if (statusDot) {
+
+            statusDot.classList.toggle(
+                "connected",
+                connected
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // START CAMERA + MICROPHONE
+    // =====================================================
+
+    async function startMedia() {
+
+        try {
+
+            console.log(
+                "Requesting camera and microphone..."
+            );
+
+
+            localStream =
+                await navigator.mediaDevices.getUserMedia({
+
+                    video: true,
+
+                    audio: true
+
+                });
+
+
+            console.log(
+                "Camera and microphone ready."
+            );
+
+
+            const videoTile =
+                document.querySelector(
+                    ".local-video"
+                );
+
+
+            const placeholder =
+                document.querySelector(
+                    ".camera-placeholder"
+                );
+
+
+            if (placeholder) {
+
+                placeholder.remove();
+
+            }
+
+
+            if (videoTile) {
+
+                const localVideo =
+                    document.createElement("video");
+
+
+                localVideo.id =
+                    "localVideo";
+
+
+                localVideo.autoplay =
+                    true;
+
+
+                localVideo.playsInline =
+                    true;
+
+
+                localVideo.muted =
+                    true;
+
+
+                localVideo.srcObject =
+                    localStream;
+
+
+                localVideo.className =
+                    "local-video-stream";
+
+
+                videoTile.prepend(
+                    localVideo
+                );
+
+            }
+
+
+            setMeetingStatus(
+                "Connecting...",
+                false
+            );
+
+
+            connectWebSocket();
+
+
+        } catch (error) {
+
+            console.error(
+                "Media access error:",
+                error
+            );
+
+
+            setMeetingStatus(
+                "Camera / microphone permission required.",
+                false
+            );
+
+
+            alert(
+                "Camera and microphone permission is required to join the meeting."
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // CREATE PEER CONNECTION
+    // =====================================================
+
+    function createPeerConnection() {
+
+        if (peerConnection) {
+
+            return peerConnection;
+
+        }
+
+
+        console.log(
+            "Creating RTCPeerConnection..."
+        );
+
+
+        peerConnection =
+            new RTCPeerConnection(
+                rtcConfiguration
+            );
+
+
+        // =================================================
+        // ADD LOCAL TRACKS
+        // =================================================
+
+        if (localStream) {
+
+            localStream
+                .getTracks()
+                .forEach(
+                    function (track) {
+
+                        peerConnection.addTrack(
+                            track,
+                            localStream
+                        );
+
+                    }
+                );
+
+        }
+
+
+        // =================================================
+        // REMOTE TRACK
+        // =================================================
+
+        peerConnection.ontrack =
+            function (event) {
+
+                console.log(
+                    "Remote track received."
+                );
+
+
+                if (
+                    event.streams &&
+                    event.streams[0]
+                ) {
+
+                    remoteStream =
+                        event.streams[0];
+
+                } else {
+
+                    if (!remoteStream) {
+
+                        remoteStream =
+                            new MediaStream();
+
+                    }
+
+
+                    if (event.track) {
+
+                        remoteStream.addTrack(
+                            event.track
+                        );
+
+                    }
+
+                }
+
+
+                if (!remoteVideo) {
+
+                    console.warn(
+                        "Remote video element not found."
+                    );
+
+                    return;
+
+                }
+
+
+                remoteVideo.srcObject =
+                    remoteStream;
+
+
+                if (remoteVideoTile) {
+
+                    remoteVideoTile.style.display =
+                        "block";
+
+                }
+
+
+                if (waitingArea) {
+
+                    waitingArea.style.display =
+                        "none";
+
+                }
+
+
+                setMeetingStatus(
+                    "Participant connected",
+                    true
+                );
+
+
+                /*
+                 * The remote video must not be muted.
+                 *
+                 * Local video is muted separately.
+                 */
+
+                remoteVideo.muted =
+                    false;
+
+
+                /*
+                 * Prevent normal autoplay AbortError
+                 * from appearing as a real error.
+                 */
+
+                if (remoteVideo.paused) {
+
+                    remoteVideo
+                        .play()
+                        .catch(
+                            function (error) {
+
+                                if (
+                                    error.name !==
+                                    "AbortError"
+                                ) {
+
+                                    console.warn(
+                                        "Remote video playback:",
+                                        error
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                }
+
+            };
+
+
+        // =================================================
+        // ICE CANDIDATE
+        // =================================================
+
+        peerConnection.onicecandidate =
+            function (event) {
+
+                if (!event.candidate) {
+
+                    return;
+
+                }
+
+
+                console.log(
+                    "Sending ICE candidate."
+                );
+
+
+                sendSignalingMessage({
+
+                    type:
+                        "ice-candidate",
+
+                    candidate:
+                        event.candidate
+
+                });
+
+            };
+
+
+        // =================================================
+        // CONNECTION STATE
+        // =================================================
+
+        peerConnection.onconnectionstatechange =
+            function () {
+
+                if (!peerConnection) {
+
+                    return;
+
+                }
+
+
+                console.log(
+                    "WebRTC connection state:",
+                    peerConnection.connectionState
+                );
+
+
+                switch (
+                peerConnection.connectionState
+                ) {
+
+                    case "new":
+
+                        setMeetingStatus(
+                            "Preparing connection...",
+                            false
+                        );
+
+                        break;
+
+
+                    case "connecting":
+
+                        setMeetingStatus(
+                            "Connecting...",
+                            false
+                        );
+
+                        break;
+
+
+                    case "connected":
+
+                        setMeetingStatus(
+                            "Connected",
+                            true
+                        );
+
+                        break;
+
+
+                    case "disconnected":
+
+                        setMeetingStatus(
+                            "Participant disconnected",
+                            false
+                        );
+
+                        break;
+
+
+                    case "failed":
+
+                        setMeetingStatus(
+                            "Connection failed",
+                            false
+                        );
+
+                        break;
+
+
+                    case "closed":
+
+                        setMeetingStatus(
+                            "Connection closed",
+                            false
+                        );
+
+                        break;
+
+                }
+
+            };
+
+
+        // =================================================
+        // ICE CONNECTION STATE
+        // =================================================
+
+        peerConnection.oniceconnectionstatechange =
+            function () {
+
+                if (!peerConnection) {
+
+                    return;
+
+                }
+
+
+                console.log(
+                    "ICE state:",
+                    peerConnection.iceConnectionState
+                );
+
+            };
+
+
+        return peerConnection;
+
+    }
+
+
+    // =====================================================
+    // SEND SIGNALING MESSAGE
+    // =====================================================
+
+    function sendSignalingMessage(
+        message
+    ) {
+
+        if (
+            !meetingSocket ||
+            meetingSocket.readyState !==
+            WebSocket.OPEN
+        ) {
+
+            console.warn(
+                "WebSocket is not open. Cannot send:",
+                message.type
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "Sending signaling message:",
+            message.type
+        );
+
+
+        meetingSocket.send(
+            JSON.stringify(message)
+        );
+
+    }
+
+
+    // =====================================================
+    // CREATE OFFER
+    // =====================================================
+
+    async function createOffer() {
+
+        try {
+
+            console.log(
+                "Creating WebRTC offer..."
+            );
+
+
+            const connection =
+                createPeerConnection();
+
+
+            const offer =
+                await connection.createOffer();
+
+
+            await connection.setLocalDescription(
+                offer
+            );
+
+
+            console.log(
+                "Local description set."
+            );
+
+
+            sendSignalingMessage({
+
+                type:
+                    "offer",
+
+                offer:
+                    connection.localDescription
+
+            });
+
+
+            console.log(
+                "WebRTC offer sent."
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Offer creation error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // HANDLE OFFER
+    // =====================================================
+
+    async function handleOffer(
+        offer
+    ) {
+
+        try {
+
+            console.log(
+                "WebRTC offer received."
+            );
+
+
+            const connection =
+                createPeerConnection();
+
+
+            await connection.setRemoteDescription(
+                new RTCSessionDescription(
+                    offer
+                )
+            );
+
+
+            console.log(
+                "Remote offer set."
+            );
+
+
+            await flushPendingIceCandidates();
+
+
+            const answer =
+                await connection.createAnswer();
+
+
+            await connection.setLocalDescription(
+                answer
+            );
+
+
+            sendSignalingMessage({
+
+                type:
+                    "answer",
+
+                answer:
+                    connection.localDescription
+
+            });
+
+
+            console.log(
+                "WebRTC answer sent."
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Offer handling error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // HANDLE ANSWER
+    // =====================================================
+
+    async function handleAnswer(
+        answer
+    ) {
+
+        try {
+
+            if (!peerConnection) {
+
+                console.warn(
+                    "No peer connection for answer."
+                );
+
+                return;
+
+            }
+
+
+            console.log(
+                "WebRTC answer received."
+            );
+
+
+            await peerConnection.setRemoteDescription(
+                new RTCSessionDescription(
+                    answer
+                )
+            );
+
+
+            console.log(
+                "Remote answer set."
+            );
+
+
+            await flushPendingIceCandidates();
+
+
+        } catch (error) {
+
+            console.error(
+                "Answer handling error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // HANDLE ICE CANDIDATE
+    // =====================================================
+
+    async function handleIceCandidate(
+        candidate
+    ) {
+
+        try {
+
+            if (!candidate) {
+
+                return;
+
+            }
+
+
+            if (
+                !peerConnection ||
+                !peerConnection.remoteDescription
+            ) {
+
+                console.log(
+                    "Queueing ICE candidate."
+                );
+
+
+                pendingIceCandidates.push(
+                    candidate
+                );
+
+
+                return;
+
+            }
+
+
+            await peerConnection.addIceCandidate(
+                new RTCIceCandidate(
+                    candidate
+                )
+            );
+
+
+            console.log(
+                "ICE candidate added."
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "ICE candidate error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // FLUSH QUEUED ICE CANDIDATES
+    // =====================================================
+
+    async function flushPendingIceCandidates() {
+
+        if (
+            !peerConnection ||
+            !peerConnection.remoteDescription
+        ) {
+
+            return;
+
+        }
+
+
+        while (
+            pendingIceCandidates.length > 0
+        ) {
+
+            const candidate =
+                pendingIceCandidates.shift();
+
+
+            try {
+
+                await peerConnection.addIceCandidate(
+                    new RTCIceCandidate(
+                        candidate
+                    )
+                );
+
+
+                console.log(
+                    "Queued ICE candidate added."
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Queued ICE candidate error:",
+                    error
+                );
+
+            }
+
+        }
+
+    }
+
+
+    // =====================================================
+    // HANDLE SIGNALING MESSAGE
+    // =====================================================
+
+    async function handleSignalingMessage(
+        message
+    ) {
+
+        if (
+            !message ||
+            !message.type
+        ) {
+
+            return;
+
+        }
+
+
+        console.log(
+            "Handling signaling:",
+            message.type
+        );
+
+
+        switch (
+        message.type
+        ) {
+
+            // ---------------------------------------------
+            // OFFER
+            // ---------------------------------------------
+
+            case "offer":
+
+                await handleOffer(
+                    message.offer
+                );
+
+                break;
+
+
+            // ---------------------------------------------
+            // ANSWER
+            // ---------------------------------------------
+
+            case "answer":
+
+                await handleAnswer(
+                    message.answer
+                );
+
+                break;
+
+
+            // ---------------------------------------------
+            // ICE
+            // ---------------------------------------------
+
+            case "ice-candidate":
+
+                await handleIceCandidate(
+                    message.candidate
+                );
+
+                break;
+
+
+            // ---------------------------------------------
+            // USER JOINED
+            // ---------------------------------------------
+
+            case "user_joined":
+
+                console.log(
+                    "Participant joined."
+                );
+
+
+                await createOffer();
+
+                break;
+
+
+            // ---------------------------------------------
+            // USER LEFT
+            // ---------------------------------------------
+
+            case "user_left":
+
+                console.log(
+                    "Participant left."
+                );
+
+
+                cleanupRemoteConnection();
+
+                break;
+
+
+            // ---------------------------------------------
+            // MEETING ENDED
+            // ---------------------------------------------
+
+            case "meeting_ended":
+
+                console.log(
+                    "Meeting ended by host."
+                );
+
+                isLeaving = true;
+
+                // Stop local camera + microphone.
+                if (localStream) {
+
+                    localStream
+                        .getTracks()
+                        .forEach(
+                            function (track) {
+                                track.stop();
+                            }
+                        );
+
+                    localStream = null;
+                }
+
+                // Close WebRTC.
+                if (peerConnection) {
+                    peerConnection.close();
+                    peerConnection = null;
+                }
+
+                // Close WebSocket.
+                if (meetingSocket) {
+                    meetingSocket.close();
+                    meetingSocket = null;
+                }
+
+                // Tell the participant what happened.
+                setMeetingStatus(
+                    "Meeting ended",
+                    false
+                );
+
+                window.setTimeout(
+                    function () {
+                        window.location.href =
+                            "{% url 'home' %}";
+                    },
+                    700
+                );
+
+                break;
+
+
+            default:
+
+                console.log(
+                    "Unknown signaling message:",
+                    message.type
+                );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // CONNECT WEBSOCKET
+    // =====================================================
+
+    function connectWebSocket() {
+
+        if (
+            meetingSocket &&
+            (
+                meetingSocket.readyState ===
+                WebSocket.OPEN ||
+
+                meetingSocket.readyState ===
+                WebSocket.CONNECTING
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        const protocol =
+            window.location.protocol ===
+                "https:"
+                ? "wss"
+                : "ws";
+
+
+        const meetingSocketUrl =
+            protocol +
+            "://" +
+            window.location.host +
+            "/ws/meetings/{{ meeting.id }}/";
+
+
+        console.log(
+            "Connecting WebSocket:",
+            meetingSocketUrl
+        );
+
+
+        meetingSocket =
+            new WebSocket(
+                meetingSocketUrl
+            );
+
+
+        // =================================================
+        // OPEN
+        // =================================================
+
+        meetingSocket.onopen =
+            function () {
+
+                console.log(
+                    "Meeting WebSocket connected."
+                );
+
+
+                setMeetingStatus(
+                    "Waiting for participant...",
+                    true
+                );
+
+            };
+
+
+        // =================================================
+        // MESSAGE
+        // =================================================
+
+        meetingSocket.onmessage =
+            async function (event) {
+
+                console.log(
+                    "Meeting message:",
+                    event.data
+                );
+
+
+                let message;
+
+
+                try {
+
+                    message =
+                        JSON.parse(
+                            event.data
+                        );
+
+
+                } catch (error) {
+
+                    /*
+                     * Backward compatibility for
+                     * older plain-text join/leave messages.
+                     */
+
+                    console.warn(
+                        "Received non-JSON WebSocket message:",
+                        event.data
+                    );
+
+
+                    if (
+                        event.data ===
+                        "A user joined the meeting."
+                    ) {
+
+                        console.log(
+                            "Participant joined."
+                        );
+
+
+                        await createOffer();
+
+                    }
+
+
+                    if (
+                        event.data ===
+                        "A user left the meeting."
+                    ) {
+
+                        console.log(
+                            "Participant left."
+                        );
+
+
+                        cleanupRemoteConnection();
+
+                    }
+
+
+                    return;
+
+                }
+
+
+                await handleSignalingMessage(
+                    message
+                );
+
+            };
+
+
+        // =================================================
+        // CLOSE
+        // =================================================
+
+        meetingSocket.onclose =
+            function () {
+
+                console.log(
+                    "Meeting WebSocket disconnected."
+                );
+
+
+                if (!isLeaving) {
+
+                    setMeetingStatus(
+                        "Meeting connection closed",
+                        false
+                    );
+
+                }
+
+            };
+
+
+        // =================================================
+        // ERROR
+        // =================================================
+
+        meetingSocket.onerror =
+            function (error) {
+
+                console.error(
+                    "Meeting WebSocket error:",
+                    error
+                );
+
+
+                setMeetingStatus(
+                    "Meeting connection error",
+                    false
+                );
+
+            };
+
+    }
+
+
+    // =====================================================
+    // MICROPHONE
+    // =====================================================
+
+    if (microphoneButton) {
+
+        microphoneButton.addEventListener(
+            "click",
+            function () {
+
+                if (!localStream) {
+
+                    return;
+
+                }
+
+
+                const audioTracks =
+                    localStream.getAudioTracks();
+
+
+                microphoneEnabled =
+                    !microphoneEnabled;
+
+
+                audioTracks.forEach(
+                    function (track) {
+
+                        track.enabled =
+                            microphoneEnabled;
+
+                    }
+                );
+
+
+                this.classList.toggle(
+                    "disabled",
+                    !microphoneEnabled
+                );
+
+
+                const label =
+                    this.querySelector(
+                        "span"
+                    );
+
+
+                if (label) {
+
+                    label.textContent =
+                        microphoneEnabled
+                            ? "Mic"
+                            : "Muted";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // CAMERA
+    // =====================================================
+
+    if (cameraButton) {
+
+        cameraButton.addEventListener(
+            "click",
+            function () {
+
+                if (!localStream) {
+
+                    return;
+
+                }
+
+
+                const videoTracks =
+                    localStream.getVideoTracks();
+
+
+                cameraEnabled =
+                    !cameraEnabled;
+
+
+                videoTracks.forEach(
+                    function (track) {
+
+                        track.enabled =
+                            cameraEnabled;
+
+                    }
+                );
+
+
+                this.classList.toggle(
+                    "disabled",
+                    !cameraEnabled
+                );
+
+
+                const label =
+                    this.querySelector(
+                        "span"
+                    );
+
+
+                if (label) {
+
+                    label.textContent =
+                        cameraEnabled
+                            ? "Camera"
+                            : "Camera Off";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // CLEANUP REMOTE CONNECTION
+    // =====================================================
+
+    function cleanupRemoteConnection() {
+
+        console.log(
+            "Cleaning up remote connection."
+        );
+
+
+        if (peerConnection) {
+
+            peerConnection.close();
+
+            peerConnection =
+                null;
+
+        }
+
+
+        if (remoteVideo) {
+
+            remoteVideo.pause();
+
+            remoteVideo.srcObject =
+                null;
+
+        }
+
+
+        remoteStream =
+            null;
+
+
+        pendingIceCandidates =
+            [];
+
+
+        if (remoteVideoTile) {
+
+            remoteVideoTile.style.display =
+                "none";
+
+        }
+
+
+        if (waitingArea) {
+
+            waitingArea.style.display =
+                "block";
+
+        }
+
+
+        setMeetingStatus(
+            "Waiting for participant...",
+            true
+        );
+
+    }
+
+
+    // =====================================================
+    // LEAVE MEETING
+    // =====================================================
+
+    // =====================================================
+    // END MEETING
+    // =====================================================
+
+    if (endMeetingButton) {
+
+        endMeetingButton.addEventListener(
+            "click",
+            function () {
+
+                const confirmed =
+                    window.confirm(
+                        "Are you sure you want to end this meeting for everyone?"
+                    );
+
+                if (!confirmed) {
+                    return;
+                }
+
+                isLeaving = true;
+
+                endMeetingButton.disabled = true;
+                endMeetingButton.setAttribute(
+                    "aria-busy",
+                    "true"
+                );
+
+                // Notify the server BEFORE closing the socket.
+                sendSignalingMessage({
+                    type: "end_meeting"
+                });
+
+                // Give the WebSocket a moment to transmit the message.
+                window.setTimeout(
+                    function () {
+
+                        // Stop local camera + microphone.
+                        if (localStream) {
+
+                            localStream
+                                .getTracks()
+                                .forEach(
+                                    function (track) {
+                                        track.stop();
+                                    }
+                                );
+
+                            localStream = null;
+                        }
+
+                        // Close WebRTC.
+                        if (peerConnection) {
+                            peerConnection.close();
+                            peerConnection = null;
+                        }
+
+                        // Close WebSocket.
+                        if (meetingSocket) {
+                            meetingSocket.close();
+                            meetingSocket = null;
+                        }
+
+                        // Submit Django End Meeting form.
+                        document.getElementById(
+                            "endMeetingForm"
+                        ).submit();
+
+                    },
+                    250
+                );
+
+            }
+        );
+
+    }
+
+
+    if (leaveButton) {
+
+        leaveButton.addEventListener(
+            "click",
+            function () {
+
+                isLeaving = true;
+
+
+                // -----------------------------------------
+                // Stop camera + microphone
+                // -----------------------------------------
+
+                if (localStream) {
+
+                    localStream
+                        .getTracks()
+                        .forEach(
+                            function (track) {
+
+                                track.stop();
+
+                            }
+                        );
+
+
+                    localStream =
+                        null;
+
+                }
+
+
+                // -----------------------------------------
+                // Close WebRTC
+                // -----------------------------------------
+
+                if (peerConnection) {
+
+                    peerConnection.close();
+
+                    peerConnection =
+                        null;
+
+                }
+
+
+                // -----------------------------------------
+                // Close WebSocket
+                // -----------------------------------------
+
+                if (meetingSocket) {
+
+                    meetingSocket.close();
+
+                    meetingSocket =
+                        null;
+
+                }
+
+
+                document.getElementById(
+                    "leaveMeetingForm"
+                ).submit();
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // START MEETING
+    // =====================================================
+
+    startMedia();
+</script>
+
+</html>

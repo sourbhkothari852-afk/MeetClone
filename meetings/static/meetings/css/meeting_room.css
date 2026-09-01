@@ -1,0 +1,1534 @@
+/* =========================================================
+   MEETING ROOM
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #0f1117;
+    color: #ffffff;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.meeting-room {
+    width: 100%;
+    height: 100vh;
+
+    min-height: 600px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #0f1117;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.meeting-room-header {
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding: 14px 24px;
+
+    background: #171a22;
+
+    border-bottom: 1px solid #292d38;
+
+    flex-shrink: 0;
+}
+
+
+.meeting-room-brand {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.meeting-brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: #252a35;
+
+    font-size: 20px;
+}
+
+
+.meeting-room-title {
+    min-width: 0;
+}
+
+
+.meeting-room-title h1 {
+    margin: 0;
+
+    max-width: 55vw;
+
+    font-size: 18px;
+    font-weight: 650;
+
+    line-height: 1.25;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.meeting-meta {
+    margin-top: 5px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 12px;
+}
+
+
+.meeting-code-label {
+    color: #8f96a5;
+}
+
+
+.meeting-code {
+    color: #dce1eb;
+
+    font-weight: 600;
+
+    letter-spacing: 0.04em;
+}
+
+
+.meeting-room-status {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #2b303c;
+
+    border-radius: 999px;
+
+    background: #1d2029;
+
+    color: #aeb5c3;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background: #777e8d;
+}
+
+
+.status-dot.connected {
+    background: #35c878;
+}
+
+
+/* =========================================================
+   VIDEO AREA
+========================================================= */
+
+.video-area {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    padding: 16px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   VIDEO TILE
+========================================================= */
+
+.video-tile {
+    position: relative;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    border: 1px solid #2b303b;
+
+    border-radius: 16px;
+
+    background: #090b10;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+
+.video-tile video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    background: #090b10;
+}
+
+
+/* =========================================================
+   LOCAL VIDEO
+========================================================= */
+
+.local-video {
+    position: relative;
+}
+
+
+.local-video-stream {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   CAMERA PLACEHOLDER
+========================================================= */
+
+.camera-placeholder {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #222733 0%,
+            #11141b 60%,
+            #090b10 100%
+        );
+}
+
+
+.camera-icon {
+    width: 72px;
+    height: 72px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #282d38;
+
+    font-size: 30px;
+}
+
+
+.camera-placeholder h2 {
+    margin: 16px 0 5px;
+
+    font-size: 18px;
+    font-weight: 650;
+}
+
+
+.camera-placeholder p {
+    margin: 0;
+
+    color: #8f96a5;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PARTICIPANT OVERLAY
+========================================================= */
+
+.participant-overlay {
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 9px 11px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    background: rgba(10, 12, 17, 0.72);
+
+    backdrop-filter: blur(10px);
+}
+
+
+.participant-info {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.participant-status-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #35c878;
+}
+
+
+.participant-name {
+    min-width: 0;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.participant-media-status {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #dce1eb;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   WAITING AREA
+========================================================= */
+
+.waiting-area {
+    position: absolute;
+
+    inset: 16px;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+
+.waiting-card {
+    width: min(430px, 90%);
+
+    padding: 34px 28px;
+
+    text-align: center;
+
+    border: 1px solid #2b303b;
+
+    border-radius: 18px;
+
+    background: #171a22;
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.30);
+}
+
+
+.waiting-icon {
+    width: 68px;
+    height: 68px;
+
+    margin: 0 auto 18px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #252a35;
+
+    font-size: 28px;
+}
+
+
+.waiting-card h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.waiting-card p {
+    margin: 10px auto 0;
+
+    max-width: 330px;
+
+    color: #969eac;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.waiting-meeting-code {
+    margin-top: 22px;
+
+    padding: 12px 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    border: 1px solid #2b303b;
+
+    border-radius: 10px;
+
+    background: #11141b;
+}
+
+
+.waiting-meeting-code span {
+    color: #858c9a;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+}
+
+
+.waiting-meeting-code strong {
+    color: #ffffff;
+
+    font-size: 16px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.meeting-controls {
+    min-height: 92px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 20px;
+
+    background: #171a22;
+
+    border-top: 1px solid #292d38;
+}
+
+
+.meeting-control-group {
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+.meeting-control {
+    min-width: 92px;
+    height: 56px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 18px;
+
+    border: 1px solid #343a47;
+
+    border-radius: 12px;
+
+    background: #242934;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+}
+
+
+.meeting-control:hover {
+    background: #2d333f;
+
+    border-color: #454c5a;
+
+    transform: translateY(-1px);
+}
+
+
+.meeting-control:active {
+    transform: translateY(0);
+}
+
+
+.meeting-control:focus-visible {
+    outline: 2px solid #ffffff;
+
+    outline-offset: 3px;
+}
+
+
+.control-icon {
+    font-size: 18px;
+
+    line-height: 1;
+}
+
+
+.meeting-control.disabled {
+    background: #343943;
+
+    border-color: #464c58;
+
+    color: #a9afbb;
+}
+
+
+/* =========================================================
+   LEAVE BUTTON
+========================================================= */
+
+.meeting-control.leave {
+    min-width: 104px;
+
+    background: #a93232;
+
+    border-color: #c14444;
+}
+
+
+.meeting-control.leave:hover {
+    background: #bd3b3b;
+
+    border-color: #d15454;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .meeting-room-header {
+        padding: 12px 16px;
+    }
+
+
+    .video-area {
+        gap: 10px;
+
+        padding: 10px;
+    }
+
+
+    .meeting-controls {
+        min-height: 84px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        overflow: auto;
+    }
+
+
+    .meeting-room {
+        min-height: 100dvh;
+
+        height: auto;
+    }
+
+
+    .meeting-room-header {
+        min-height: 72px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        padding: 12px 14px;
+    }
+
+
+    .meeting-room-brand {
+        width: 100%;
+    }
+
+
+    .meeting-room-title h1 {
+        max-width: 70vw;
+
+        font-size: 16px;
+    }
+
+
+    .meeting-room-status {
+        align-self: flex-start;
+
+        font-size: 12px;
+    }
+
+
+    .video-area {
+        min-height: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 10px;
+
+        overflow: visible;
+    }
+
+
+    .video-tile {
+        min-height: 42vh;
+
+        flex: 1;
+    }
+
+
+    .remote-video {
+        min-height: 42vh;
+    }
+
+
+    .waiting-area {
+        position: absolute;
+
+        inset: 10px;
+    }
+
+
+    .waiting-card {
+        padding: 28px 20px;
+    }
+
+
+    .meeting-controls {
+        position: sticky;
+
+        bottom: 0;
+
+        min-height: 82px;
+
+        padding:
+            10px
+            10px
+            calc(10px + env(safe-area-inset-bottom));
+
+        z-index: 50;
+    }
+
+
+    .meeting-control-group {
+        width: 100%;
+
+        gap: 8px;
+    }
+
+
+    .meeting-control {
+        min-width: 0;
+
+        flex: 1;
+
+        height: 52px;
+
+        padding: 0 10px;
+
+        border-radius: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .meeting-brand-icon {
+        width: 38px;
+        height: 38px;
+
+        border-radius: 10px;
+
+        font-size: 18px;
+    }
+
+
+    .meeting-room-title h1 {
+        max-width: 64vw;
+
+        font-size: 15px;
+    }
+
+
+    .meeting-meta {
+        font-size: 11px;
+    }
+
+
+    .video-tile {
+        min-height: 38vh;
+    }
+
+
+    .participant-overlay {
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+
+        padding: 8px;
+    }
+
+
+    .participant-name {
+        font-size: 12px;
+    }
+
+
+    .meeting-control {
+        height: 50px;
+
+        flex-direction: column;
+
+        gap: 3px;
+
+        font-size: 11px;
+    }
+
+
+    .control-icon {
+        font-size: 17px;
+    }
+
+
+    .waiting-card h2 {
+        font-size: 18px;
+    }
+
+
+    .waiting-card p {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .meeting-control {
+        transition: none;
+    }
+
+}
+
+/* =========================================================
+   MIC / CAMERA ACTIVE STATES
+========================================================= */
+
+.meeting-control {
+    position: relative;
+}
+
+
+/* Normal / Active */
+
+.meeting-control:not(.disabled) {
+    background: #242934;
+    border-color: #343a47;
+}
+
+
+/* Mic / Camera disabled */
+
+.meeting-control.disabled {
+    background: #3a3e48;
+    border-color: #555b68;
+    color: #c4c8d0;
+}
+
+
+/* Small status indicator */
+
+.meeting-control.disabled::after {
+    content: "";
+    
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #e05252;
+}
+
+
+/* Active status indicator */
+
+.meeting-control:not(.disabled)::after {
+    content: "";
+
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #35c878;
+}
+
+
+/* Leave button should NOT get the green/red
+   media-status indicator */
+
+.meeting-control.leave::after {
+    display: none;
+}
+
+
+/* Disabled button hover */
+
+.meeting-control.disabled:hover {
+    background: #444955;
+    border-color: #626977;
+}
+
+
+/* Better icon transition */
+
+.meeting-control .control-icon {
+    transition:
+        transform 0.18s ease,
+        opacity 0.18s ease;
+}
+
+
+.meeting-control.disabled .control-icon {
+    opacity: 0.75;
+}
+
+
+/* Mobile */
+
+@media (max-width: 420px) {
+
+    .meeting-control.disabled::after,
+    .meeting-control:not(.disabled)::after {
+        top: 5px;
+        right: 5px;
+
+        width: 6px;
+        height: 6px;
+    }
+
+}
+
+/* =========================================================
+   COPY / SHARE / WAITING SCREEN
+   Final consolidated styles
+========================================================= */
+
+/* ---------------------------------------------------------
+   WAITING AREA
+--------------------------------------------------------- */
+
+.waiting-area {
+    position: absolute;
+
+    inset: 16px;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    min-width: 0;
+    min-height: 0;
+
+    padding: 20px;
+
+    overflow: auto;
+
+    /*
+     * The overlay itself does not block the video area.
+     * The card below explicitly enables pointer events.
+     */
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   WAITING CARD
+--------------------------------------------------------- */
+
+.waiting-card {
+    width: min(460px, 100%);
+
+    max-width: 100%;
+    max-height: 100%;
+
+    box-sizing: border-box;
+
+    padding: 32px 28px;
+
+    text-align: center;
+
+    border: 1px solid #2d3442;
+    border-radius: 18px;
+
+    background: #171c26;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.25);
+
+    overflow-y: auto;
+
+    pointer-events: auto;
+}
+
+
+/* ---------------------------------------------------------
+   WAITING ICON
+--------------------------------------------------------- */
+
+.waiting-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #202633;
+
+    font-size: 30px;
+}
+
+
+/* ---------------------------------------------------------
+   WAITING TITLE
+--------------------------------------------------------- */
+
+.waiting-card h2 {
+    margin: 0;
+
+    color: #f5f7fb;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    line-height: 1.25;
+}
+
+
+/* ---------------------------------------------------------
+   WAITING DESCRIPTION
+--------------------------------------------------------- */
+
+.waiting-card p {
+    margin: 12px auto 22px;
+
+    max-width: 360px;
+
+    color: #9da7b8;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ---------------------------------------------------------
+   MEETING CODE BOX
+--------------------------------------------------------- */
+
+.waiting-meeting-code {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 18px;
+
+    border: 1px solid #2d3442;
+    border-radius: 14px;
+
+    background: #10151e;
+}
+
+
+/* Label */
+
+.waiting-meeting-code > span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #8f99aa;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+
+/* Meeting code */
+
+.waiting-meeting-code > strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    letter-spacing: 0.08em;
+
+    word-break: break-word;
+}
+
+
+/* ---------------------------------------------------------
+   COPY MEETING CODE
+--------------------------------------------------------- */
+
+.copy-meeting-code {
+    position: relative;
+
+    z-index: 50;
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 14px;
+
+    padding: 11px 16px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #2d3442;
+    border-radius: 10px;
+
+    background: #202633;
+    color: #f5f7fb;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.copy-meeting-code:hover {
+    background: #293142;
+
+    border-color: #414b5e;
+}
+
+
+.copy-meeting-code:active {
+    transform: scale(0.98);
+}
+
+
+.copy-meeting-code:focus-visible {
+    outline: 2px solid #6ea8fe;
+
+    outline-offset: 2px;
+}
+
+
+.copy-meeting-code.copied {
+    background: #183a2b;
+
+    border-color: #2d7a52;
+
+    color: #7ee2ad;
+}
+
+
+/* ---------------------------------------------------------
+   SHARE MEETING
+--------------------------------------------------------- */
+
+.share-meeting {
+    position: relative;
+
+    z-index: 50;
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 11px 16px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #2d3442;
+    border-radius: 10px;
+
+    background: #202633;
+    color: #f5f7fb;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.share-meeting:hover {
+    background: #293142;
+
+    border-color: #414b5e;
+}
+
+
+.share-meeting:active {
+    transform: scale(0.98);
+}
+
+
+.share-meeting:focus-visible {
+    outline: 2px solid #6ea8fe;
+
+    outline-offset: 2px;
+}
+
+
+.share-meeting.copied {
+    background: #183a2b;
+
+    border-color: #2d7a52;
+
+    color: #7ee2ad;
+}
+
+
+/* ---------------------------------------------------------
+   WAITING SCREEN - TABLET
+--------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .waiting-area {
+        inset: 10px;
+
+        padding: 16px;
+    }
+
+
+    .waiting-card {
+        width: min(460px, 100%);
+
+        padding: 30px 24px;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   WAITING SCREEN - MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .waiting-area {
+        position: absolute;
+
+        inset: 10px;
+
+        z-index: 10;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 12px;
+
+        overflow: auto;
+
+        pointer-events: none;
+    }
+
+
+    .waiting-card {
+        width: min(460px, 100%);
+
+        max-height: 100%;
+
+        padding: 28px 20px;
+
+        border-radius: 16px;
+    }
+
+
+    .waiting-icon {
+        width: 58px;
+        height: 58px;
+
+        margin-bottom: 14px;
+
+        font-size: 26px;
+    }
+
+
+    .waiting-card h2 {
+        font-size: 20px;
+    }
+
+
+    .waiting-card p {
+        margin-bottom: 18px;
+
+        font-size: 13px;
+    }
+
+
+    .waiting-meeting-code {
+        padding: 15px;
+    }
+
+
+    .waiting-meeting-code > strong {
+        font-size: 19px;
+    }
+
+
+    .copy-meeting-code,
+    .share-meeting {
+        min-height: 46px;
+
+        padding: 10px 12px;
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   WAITING SCREEN - SMALL MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 420px) {
+
+    .waiting-area {
+        inset: 8px;
+
+        padding: 8px;
+    }
+
+
+    .waiting-card {
+        padding: 24px 16px;
+
+        border-radius: 14px;
+    }
+
+
+    .waiting-icon {
+        width: 52px;
+        height: 52px;
+
+        font-size: 24px;
+    }
+
+
+    .waiting-card h2 {
+        font-size: 18px;
+    }
+
+
+    .waiting-card p {
+        font-size: 12px;
+    }
+
+
+    .waiting-meeting-code > span {
+        font-size: 10px;
+    }
+
+
+    .waiting-meeting-code > strong {
+        font-size: 17px;
+    }
+
+}
+/* =========================================================
+   WAITING CARD - FINAL SCROLLBAR FIX
+========================================================= */
+
+.waiting-area {
+    overflow: hidden;
+}
+
+
+.waiting-card {
+    max-height: none;
+    overflow: hidden;
+}
+
+
+/* Keep scrolling only when the screen is genuinely small */
+@media (max-width: 700px) {
+
+    .waiting-area {
+        overflow: auto;
+    }
+
+    .waiting-card {
+        max-height: calc(100% - 16px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+
+}/* =========================================
+   CANCEL MEETING FORM
+========================================= */
+
+.cancel-meeting-form {
+    margin: 0;
+    padding: 0;
+    display: contents;
+}
+
+
+/* =========================================
+   CANCEL MEETING BUTTON
+========================================= */
+
+.meeting-control.cancel-meeting {
+    background-color: #dc3545 !important;
+    border: 1px solid #dc3545 !important;
+    color: #ffffff !important;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+/* =========================================
+   CANCEL BUTTON HOVER
+========================================= */
+
+.meeting-control.cancel-meeting:hover {
+    background-color: #b02a37 !important;
+    border-color: #b02a37 !important;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   ACTIVE
+========================================= */
+
+.meeting-control.cancel-meeting:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   FOCUS
+========================================= */
+
+.meeting-control.cancel-meeting:focus-visible {
+    outline: 3px solid rgba(220, 53, 69, 0.4);
+    outline-offset: 3px;
+}

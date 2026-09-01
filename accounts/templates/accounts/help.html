@@ -1,0 +1,536 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Help - MeetClone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/help.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="navbar-left">
+
+            <a
+                href="{% url 'home' %}"
+                class="logo"
+            >
+                MeetClone
+            </a>
+
+        </div>
+
+
+        <div class="navbar-right">
+
+            <a
+                href="{% url 'profile' %}"
+                class="profile-link"
+            >
+                Profile
+            </a>
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout-btn"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="help-page">
+
+        <div class="help-container">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <section class="help-header">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <span class="page-label">
+                    MEETCLONE SUPPORT
+                </span>
+
+                <h1>
+                    Help Center
+                </h1>
+
+                <p>
+                    Find answers to common questions and learn
+                    how to use MeetClone.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 GETTING STARTED
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    1. Getting Started
+                </h2>
+
+                <p>
+                    Create or log in to your MeetClone account
+                    to start using meetings and account features.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Create an account or log in.
+                    </li>
+
+                    <li>
+                        Complete your profile if needed.
+                    </li>
+
+                    <li>
+                        Use the Home page to create or join
+                        a meeting.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CREATE MEETING
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    2. How to Create a Meeting
+                </h2>
+
+                <p>
+                    To create a new meeting:
+                </p>
+
+                <ol>
+
+                    <li>
+                        Open the Home page.
+                    </li>
+
+                    <li>
+                        Click
+                        <strong>
+                            New Meeting
+                        </strong>.
+                    </li>
+
+                    <li>
+                        Enter the meeting title and other
+                        available information.
+                    </li>
+
+                    <li>
+                        Create the meeting.
+                    </li>
+
+                    <li>
+                        Share the generated meeting code
+                        with the people you want to invite.
+                    </li>
+
+                </ol>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 JOIN MEETING
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    3. How to Join a Meeting
+                </h2>
+
+                <p>
+                    If someone shares a MeetClone meeting code
+                    with you:
+                </p>
+
+                <ol>
+
+                    <li>
+                        Open the MeetClone Home page.
+                    </li>
+
+                    <li>
+                        Enter the meeting code in the
+                        <strong>
+                            Enter a meeting code
+                        </strong>
+                        field.
+                    </li>
+
+                    <li>
+                        Click
+                        <strong>
+                            Join
+                        </strong>.
+                    </li>
+
+                    <li>
+                        Continue to the meeting room when
+                        the meeting is available.
+                    </li>
+
+                </ol>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MEETING CODE
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    4. Meeting Code
+                </h2>
+
+                <p>
+                    A meeting code is generated when a meeting
+                    is created. The host can share this code
+                    with participants.
+                </p>
+
+                <p>
+                    You can copy the meeting code from the
+                    meeting details page and share it through
+                    supported communication methods.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROFILE
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    5. Profile
+                </h2>
+
+                <p>
+                    Click your profile area in the Home page
+                    navigation bar to open your profile.
+                </p>
+
+                <p>
+                    Depending on the available account settings,
+                    you can manage your profile information,
+                    profile picture, bio, privacy settings,
+                    notifications, and account security.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PASSWORD
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    6. Password and Account Recovery
+                </h2>
+
+                <p>
+                    If you forget your password, use the
+                    account recovery or password reset options
+                    available on the login page.
+                </p>
+
+                <p>
+                    Follow the verification steps provided by
+                    MeetClone to recover access to your account.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 NOTIFICATIONS
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    7. Notifications
+                </h2>
+
+                <p>
+                    MeetClone provides notification settings
+                    that allow you to manage available account
+                    and meeting-related notifications.
+                </p>
+
+                <p>
+                    Open your account notification settings
+                    to review or update your available
+                    notification preferences.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PRIVACY
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    8. Privacy
+                </h2>
+
+                <p>
+                    You can review the MeetClone Privacy Policy
+                    to understand how your account and personal
+                    information is handled.
+                </p>
+
+                <a
+                    href="{% url 'privacy' %}"
+                    class="inline-link"
+                >
+                    View Privacy Policy
+                </a>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 TERMS
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    9. Terms &amp; Conditions
+                </h2>
+
+                <p>
+                    Please review the MeetClone Terms &amp;
+                    Conditions for information about using
+                    the service.
+                </p>
+
+                <a
+                    href="{% url 'terms' %}"
+                    class="inline-link"
+                >
+                    View Terms &amp; Conditions
+                </a>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 COMMON PROBLEMS
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    10. Common Problems
+                </h2>
+
+                <div class="help-card">
+
+                    <h3>
+                        Meeting code is not working
+                    </h3>
+
+                    <p>
+                        Check that the code was entered exactly
+                        as provided by the meeting host.
+                    </p>
+
+                </div>
+
+
+                <div class="help-card">
+
+                    <h3>
+                        Meeting has ended
+                    </h3>
+
+                    <p>
+                        An ended meeting may no longer be
+                        available to join.
+                    </p>
+
+                </div>
+
+
+                <div class="help-card">
+
+                    <h3>
+                        Profile picture is not visible
+                    </h3>
+
+                    <p>
+                        Check your profile and make sure a
+                        profile picture has been uploaded.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <section class="help-section">
+
+                <h2>
+                    11. Need More Help?
+                </h2>
+
+                <p>
+                    If you cannot resolve an issue using the
+                    information on this page, review your
+                    account settings and available support
+                    options.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACTIONS
+            ================================================== -->
+
+            <div class="help-actions">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="back-home-btn"
+                >
+                    Back to Home
+                </a>
+
+                <a
+                    href="{% url 'privacy' %}"
+                    class="secondary-btn"
+                >
+                    Privacy
+                </a>
+
+                <a
+                    href="{% url 'terms' %}"
+                    class="secondary-btn"
+                >
+                    Terms &amp; Conditions
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 MeetClone
+        </p>
+
+        <div class="footer-links">
+
+            <a href="{% url 'privacy' %}">
+                Privacy
+            </a>
+
+            <a href="{% url 'terms' %}">
+                Terms &amp; Conditions
+            </a>
+
+            <a href="{% url 'help' %}">
+                Help
+            </a>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

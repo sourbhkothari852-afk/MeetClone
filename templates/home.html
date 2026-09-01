@@ -1,0 +1,730 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        MeetClone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/home.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+
+        <div class="navbar-left">
+
+            <a
+                href="{% url 'home' %}"
+                class="logo"
+            >
+                MeetClone
+            </a>
+
+        </div>
+
+
+        <div class="navbar-right">
+
+
+            <!-- PROFILE -->
+
+            <a
+                href="{% url 'profile' %}"
+                class="user-profile"
+                aria-label="Open profile"
+            >
+
+                <div class="avatar">
+
+                    {% if request.user.profile.profile_picture %}
+
+                        <img
+                            src="{{ request.user.profile.profile_picture.url }}"
+                            alt="{{ request.user.username }}"
+                        >
+
+                    {% else %}
+
+                        {{ request.user.username|first|upper }}
+
+                    {% endif %}
+
+                </div>
+
+
+                <span class="username">
+                    {{ request.user.username }}
+                </span>
+
+            </a>
+
+
+            <!-- NOTIFICATIONS -->
+
+            <a
+                href="{% url 'notifications' %}"
+                class="notification-link"
+                aria-label="Open notifications"
+            >
+
+                <span class="notification-icon">
+                    🔔
+                </span>
+
+
+                <span class="notification-text">
+                    Notifications
+                </span>
+
+
+                {% if unread_count > 0 %}
+
+                    <span class="notification-badge">
+                        {{ unread_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout-btn"
+            >
+                Logout
+            </a>
+
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-container">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero-section">
+
+
+            <!-- HERO CONTENT -->
+
+            <div class="hero-content">
+
+
+                <span class="hero-label">
+                    VIDEO MEETINGS
+                </span>
+
+
+                <h1>
+
+                    Connect with your team,
+
+                    <br>
+
+                    <span>
+                        wherever you are.
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Start a secure video meeting or join an
+                    existing meeting with a simple meeting code.
+
+                </p>
+
+
+                <!-- =========================================
+                     MEETING ACTIONS
+                ========================================== -->
+
+                <div class="meeting-actions">
+
+
+                    <!-- NEW MEETING -->
+
+                    <a
+                        href="{% url 'create_meeting' %}"
+                        class="new-meeting-btn"
+                    >
+
+                        <span class="button-icon">
+                            +
+                        </span>
+
+
+                        <span>
+                            New Meeting
+                        </span>
+
+                    </a>
+
+
+                    <!-- JOIN MEETING -->
+
+                    <form
+                        class="join-form"
+                        method="POST"
+                        action="{% url 'join_meeting' %}"
+                    >
+
+                        {% csrf_token %}
+
+
+                        <div class="join-input-wrapper">
+
+                            <span
+                                class="input-icon"
+                                aria-hidden="true"
+                            >
+                                #
+                            </span>
+
+
+                            <input
+                                type="text"
+                                name="meeting_code"
+                                placeholder="Enter a meeting code"
+                                autocomplete="off"
+                                maxlength="20"
+                                required
+                                aria-label="Meeting code"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="join-btn"
+                        >
+                            Join
+                        </button>
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 HERO VISUAL
+            ================================================== -->
+
+            <div class="hero-visual">
+
+
+                <div class="video-preview">
+
+
+                    <div class="preview-header">
+
+                        <span class="preview-dot"></span>
+
+
+                        <span>
+                            MeetClone Preview
+                        </span>
+
+                    </div>
+
+
+                    <div class="preview-screen">
+
+
+                        <!-- CURRENT USER -->
+
+                        <div class="preview-user">
+
+                            <div class="preview-avatar">
+
+                                {% if request.user.profile.profile_picture %}
+
+                                    <img
+                                        src="{{ request.user.profile.profile_picture.url }}"
+                                        alt="{{ request.user.username }}"
+                                    >
+
+                                {% else %}
+
+                                    {{ request.user.username|first|upper }}
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <span>
+                                You
+                            </span>
+
+                        </div>
+
+
+                        <!-- PARTICIPANT -->
+
+                        <div class="preview-user small-user">
+
+                            <div class="preview-avatar">
+                                M
+                            </div>
+
+
+                            <span>
+                                Participant
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="preview-controls">
+
+                        <span
+                            aria-label="Microphone"
+                            title="Microphone"
+                        >
+                            🎤
+                        </span>
+
+
+                        <span
+                            aria-label="Camera"
+                            title="Camera"
+                        >
+                            📹
+                        </span>
+
+
+                        <span
+                            aria-label="Screen sharing"
+                            title="Screen sharing"
+                        >
+                            🖥️
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================================
+             RECENT MEETINGS
+        ====================================================== -->
+
+        <section class="recent-section">
+
+
+            <!-- SECTION HEADER -->
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Recent Meetings
+                    </h2>
+
+
+                    <p>
+                        Your recently created or joined meetings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MEETINGS EXIST
+            ================================================== -->
+
+            {% if created_meetings or joined_meetings %}
+
+
+                <div class="recent-meetings-list">
+
+
+                    <!-- =========================================
+                         CREATED MEETINGS
+                    ========================================== -->
+
+                    {% for meeting in created_meetings %}
+
+                        <article class="recent-meeting-card">
+
+
+                            <!-- ICON -->
+
+                            <div
+                                class="meeting-history-icon"
+                                aria-hidden="true"
+                            >
+                                🎥
+                            </div>
+
+
+                            <!-- CONTENT -->
+
+                            <div class="meeting-history-content">
+
+
+                                <div class="meeting-history-top">
+
+
+                                    <h3>
+                                        {{ meeting.title }}
+                                    </h3>
+
+
+                                    <span
+                                        class="meeting-status {{ meeting.status }}"
+                                    >
+                                        {{ meeting.get_status_display }}
+                                    </span>
+
+
+                                </div>
+
+
+                                <!-- MEETING CODE -->
+
+                                <p class="meeting-code">
+
+                                    Code:
+
+                                    <strong>
+                                        {{ meeting.meeting_code }}
+                                    </strong>
+
+                                </p>
+
+
+                                <!-- META -->
+
+                                <p class="meeting-history-meta">
+
+                                    Created by
+
+                                    <strong>
+                                        You
+                                    </strong>
+
+                                    <span>
+                                        •
+                                    </span>
+
+                                    {{ meeting.created_at|date:"d M Y, h:i A" }}
+
+                                </p>
+
+
+                            </div>
+
+
+                            <!-- =====================================
+                                 DELETE CREATED MEETING
+                            ====================================== -->
+
+                            <form
+                                method="POST"
+                                action="{% url 'delete_created_meeting' meeting.id %}"
+                                class="delete-meeting-form"
+                            >
+
+                                {% csrf_token %}
+
+
+                                <button
+                                    type="submit"
+                                    class="delete-meeting-btn"
+                                    aria-label="Delete meeting"
+                                    title="Delete meeting"
+                                    onclick="
+                                        return confirm(
+                                            'Are you sure you want to delete this meeting?'
+                                        );
+                                    "
+                                >
+                                    🗑️
+                                </button>
+
+                            </form>
+
+
+                        </article>
+
+                    {% endfor %}
+
+
+                    <!-- =========================================
+                         JOINED MEETINGS
+                    ========================================== -->
+
+                    {% for participant in joined_meetings %}
+
+
+                        <!-- Avoid duplicate host meeting -->
+
+                        {% if participant.meeting.host != request.user %}
+
+
+                            <article class="recent-meeting-card">
+
+
+                                <!-- ICON -->
+
+                                <div
+                                    class="meeting-history-icon joined-icon"
+                                    aria-hidden="true"
+                                >
+                                    📞
+                                </div>
+
+
+                                <!-- CONTENT -->
+
+                                <div class="meeting-history-content">
+
+
+                                    <div class="meeting-history-top">
+
+
+                                        <h3>
+                                            {{ participant.meeting.title }}
+                                        </h3>
+
+
+                                        <span
+                                            class="
+                                                meeting-status
+                                                {{ participant.meeting.status }}
+                                            "
+                                        >
+                                            {{ participant.meeting.get_status_display }}
+                                        </span>
+
+
+                                    </div>
+
+
+                                    <!-- MEETING CODE -->
+
+                                    <p class="meeting-code">
+
+                                        Code:
+
+                                        <strong>
+                                            {{ participant.meeting.meeting_code }}
+                                        </strong>
+
+                                    </p>
+
+
+                                    <!-- META -->
+
+                                    <p class="meeting-history-meta">
+
+                                        Hosted by
+
+                                        <strong>
+                                            {{ participant.meeting.host.username }}
+                                        </strong>
+
+                                        <span>
+                                            •
+                                        </span>
+
+                                        Joined
+
+                                        {{ participant.joined_at|date:"d M Y, h:i A" }}
+
+                                    </p>
+
+
+                                </div>
+
+
+                                <!-- =====================================
+                                     REMOVE FROM HISTORY
+                                ====================================== -->
+
+                                <form
+                                    method="POST"
+                                    action="{% url 'remove_joined_meeting' participant.id %}"
+                                    class="delete-meeting-form"
+                                >
+
+                                    {% csrf_token %}
+
+
+                                    <button
+                                        type="submit"
+                                        class="delete-meeting-btn"
+                                        aria-label="Remove meeting from history"
+                                        title="Remove from history"
+                                        onclick="
+                                            return confirm(
+                                                'Remove this meeting from your history?'
+                                            );
+                                        "
+                                    >
+                                        🗑️
+                                    </button>
+
+                                </form>
+
+
+                            </article>
+
+
+                        {% endif %}
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- =============================================
+                     EMPTY STATE
+                ============================================== -->
+
+                <div class="empty-state">
+
+
+                    <div
+                        class="empty-icon"
+                        aria-hidden="true"
+                    >
+                        🎥
+                    </div>
+
+
+                    <h3>
+                        No recent meetings
+                    </h3>
+
+
+                    <p>
+
+                        Your meeting history will appear here
+                        after you create or join a meeting.
+
+                    </p>
+
+
+                    <a
+                        href="{% url 'create_meeting' %}"
+                        class="empty-action"
+                    >
+                        Start your first meeting
+                    </a>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <p>
+            © 2026 MeetClone
+        </p>
+
+
+        <div class="footer-links">
+
+
+            <a href="{% url 'privacy' %}">
+                Privacy
+            </a>
+
+
+            <a href="{% url 'terms' %}">
+                Terms & Conditions
+            </a>
+
+
+            <a href="{% url 'help' %}">
+                Help
+            </a>
+
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

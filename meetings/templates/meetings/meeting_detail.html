@@ -1,0 +1,823 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ meeting.title }} - Meeting Details | MeetClone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'meetings/css/meeting_detail.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="meeting-navbar">
+
+        <div class="meeting-navbar-container">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="{% url 'home' %}"
+                class="meeting-logo"
+            >
+                MeetClone
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <nav
+                class="meeting-nav-links"
+                aria-label="Main navigation"
+            >
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+
+                <a href="{% url 'create_meeting' %}">
+                    Create Meeting
+                </a>
+
+
+                <a href="{% url 'join_meeting' %}">
+                    Join Meeting
+                </a>
+
+
+                <a href="{% url 'profile' %}">
+                    Profile
+                </a>
+
+            </nav>
+
+
+            <!-- USER -->
+
+            <div class="meeting-navbar-user">
+
+                <span>
+                    {{ request.user.username }}
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN PAGE
+    ========================================================== -->
+
+    <main class="meeting-detail-page">
+
+        <div class="meeting-detail-container">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <section class="meeting-detail-header">
+
+                <div
+                    class="meeting-detail-icon"
+                    aria-hidden="true"
+                >
+                    📅
+                </div>
+
+
+                <div class="meeting-header-content">
+
+                    <p class="meeting-page-label">
+                        Meeting Details
+                    </p>
+
+
+                    <h1>
+                        {{ meeting.title }}
+                    </h1>
+
+
+                    <p>
+                        Review your meeting information and
+                        share the meeting code with participants.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 SUCCESS MESSAGE
+            ================================================== -->
+
+            <div
+                class="meeting-success"
+                role="status"
+            >
+
+                <span
+                    class="success-icon"
+                    aria-hidden="true"
+                >
+                    ✓
+                </span>
+
+
+                <div>
+
+                    <strong>
+                        Meeting Created Successfully
+                    </strong>
+
+
+                    <p>
+                        Your meeting is ready. Share the meeting
+                        code with participants to invite them.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MEETING INFORMATION
+            ================================================== -->
+
+            <section
+                class="meeting-information"
+                aria-label="Meeting information"
+            >
+
+
+                <!-- =================================================
+                     MEETING CODE
+                ================================================== -->
+
+                <div class="meeting-code-box">
+
+                    <div class="meeting-code-header">
+
+                        <div>
+
+                            <span class="meeting-label">
+                                Meeting Code
+                            </span>
+
+
+                            <strong
+                                class="meeting-code"
+                                id="meetingCode"
+                            >
+                                {{ meeting.meeting_code }}
+                            </strong>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="copy-meeting-button"
+                            id="copyMeetingCode"
+                            data-code="{{ meeting.meeting_code|escape }}"
+                            aria-label="Copy meeting code"
+                        >
+
+                            <span
+                                class="copy-icon"
+                                aria-hidden="true"
+                            >
+                                📋
+                            </span>
+
+                            <span class="copy-button-text">
+                                Copy Code
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <p>
+                        Share this meeting code with the people
+                        you want to invite.
+                    </p>
+
+
+                    <!-- COPY STATUS -->
+
+                    <span
+                        class="copy-status"
+                        id="copyStatus"
+                        aria-live="polite"
+                    >
+                    </span>
+
+                </div>
+
+
+                <!-- =================================================
+                     TITLE
+                ================================================== -->
+
+                <div class="meeting-detail-row">
+
+                    <span class="meeting-detail-label">
+                        Title
+                    </span>
+
+
+                    <strong class="meeting-detail-value">
+                        {{ meeting.title }}
+                    </strong>
+
+                </div>
+
+
+                <!-- =================================================
+                     HOST
+                ================================================== -->
+
+                <div class="meeting-detail-row">
+
+                    <span class="meeting-detail-label">
+                        Host
+                    </span>
+
+
+                    <strong class="meeting-detail-value">
+                        {{ meeting.host.username }}
+                    </strong>
+
+                </div>
+
+
+                <!-- =================================================
+                     DESCRIPTION
+                ================================================== -->
+
+                <div class="meeting-detail-row meeting-description-row">
+
+                    <span class="meeting-detail-label">
+                        Description
+                    </span>
+
+
+                    <div class="meeting-detail-value">
+
+                        {% if meeting.description %}
+
+                            {{ meeting.description|linebreaksbr }}
+
+                        {% else %}
+
+                            <span class="empty-value">
+                                No description provided.
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     SCHEDULE
+                ================================================== -->
+
+                <div class="meeting-detail-row">
+
+                    <span class="meeting-detail-label">
+                        Scheduled
+                    </span>
+
+
+                    <strong class="meeting-detail-value">
+
+                        {% if meeting.scheduled_at %}
+
+                            {{ meeting.scheduled_at|date:"d F Y, h:i A" }}
+
+                        {% else %}
+
+                            <span class="empty-value">
+                                Not scheduled
+                            </span>
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+                <!-- =================================================
+                     STATUS
+                ================================================== -->
+
+                <div class="meeting-detail-row">
+
+                    <span class="meeting-detail-label">
+                        Status
+                    </span>
+
+
+                    <span
+                        class="
+                            meeting-status
+                            meeting-status-{{ meeting.status }}
+                        "
+                    >
+                        {{ meeting.get_status_display }}
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 ACTIONS
+            ================================================== -->
+
+            <div class="meeting-actions">
+
+
+                <!-- JOIN MEETING -->
+
+                {% if meeting.status != "completed" and meeting.status != "cancelled" %}
+
+                    <a
+                        href="{% url 'meeting_room' meeting_id=meeting.id %}"
+                        class="join-meeting-button"
+                    >
+
+                        <span aria-hidden="true">
+                            🎥
+                        </span>
+
+                        Join Meeting
+
+                    </a>
+
+                {% endif %}
+
+
+                <!-- BACK HOME -->
+
+                <a
+                    href="{% url 'home' %}"
+                    class="back-home-button"
+                >
+                    Back to Home
+                </a>
+
+
+                <!-- CREATE ANOTHER -->
+
+                <a
+                    href="{% url 'create_meeting' %}"
+                    class="create-another-button"
+                >
+                    Create Another Meeting
+                </a>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 MEETING STATUS INFORMATION
+            ================================================== -->
+
+            {% if meeting.status == "completed" %}
+
+                <div class="meeting-notice meeting-notice-completed">
+
+                    <span aria-hidden="true">
+                        ✓
+                    </span>
+
+                    <p>
+                        This meeting has been completed.
+                    </p>
+
+                </div>
+
+            {% elif meeting.status == "cancelled" %}
+
+                <div class="meeting-notice meeting-notice-cancelled">
+
+                    <span aria-hidden="true">
+                        !
+                    </span>
+
+                    <p>
+                        This meeting has been cancelled and
+                        can no longer be joined.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="meeting-site-footer">
+
+        <div class="meeting-footer-container">
+
+
+            <div class="meeting-footer-brand">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="meeting-footer-logo"
+                >
+                    MeetClone
+                </a>
+
+
+                <p>
+                    Simple and secure video meetings for everyone.
+                </p>
+
+            </div>
+
+
+            <div class="meeting-footer-links">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+
+                <a href="{% url 'create_meeting' %}">
+                    Create Meeting
+                </a>
+
+
+                <a href="{% url 'join_meeting' %}">
+                    Join Meeting
+                </a>
+
+
+                <a href="{% url 'profile' %}">
+                    Profile
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="meeting-footer-bottom">
+
+            <p>
+                © {% now "Y" %} MeetClone. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         COPY MEETING CODE JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const copyButton =
+                    document.getElementById(
+                        "copyMeetingCode"
+                    );
+
+
+                const meetingCode =
+                    document.getElementById(
+                        "meetingCode"
+                    );
+
+
+                const copyStatus =
+                    document.getElementById(
+                        "copyStatus"
+                    );
+
+
+                if (
+                    !copyButton ||
+                    !meetingCode
+                ) {
+
+                    return;
+
+                }
+
+
+                const originalButtonHTML =
+                    copyButton.innerHTML;
+
+
+                /*
+                 * UPDATE COPY STATUS
+                 */
+
+                function showCopyStatus(
+                    message
+                ) {
+
+                    if (!copyStatus) {
+
+                        return;
+
+                    }
+
+
+                    copyStatus.textContent =
+                        message;
+
+
+                    setTimeout(
+                        function () {
+
+                            copyStatus.textContent =
+                                "";
+
+                        },
+                        2500
+                    );
+
+                }
+
+
+                /*
+                 * FALLBACK COPY METHOD
+                 */
+
+                function fallbackCopyText(
+                    text
+                ) {
+
+                    const textArea =
+                        document.createElement(
+                            "textarea"
+                        );
+
+
+                    textArea.value =
+                        text;
+
+
+                    textArea.style.position =
+                        "fixed";
+
+
+                    textArea.style.opacity =
+                        "0";
+
+
+                    document.body.appendChild(
+                        textArea
+                    );
+
+
+                    textArea.focus();
+
+
+                    textArea.select();
+
+
+                    let copied =
+                        false;
+
+
+                    try {
+
+                        copied =
+                            document.execCommand(
+                                "copy"
+                            );
+
+                    } catch (error) {
+
+                        copied =
+                            false;
+
+                    }
+
+
+                    document.body.removeChild(
+                        textArea
+                    );
+
+
+                    return copied;
+
+                }
+
+
+                /*
+                 * COPY MEETING CODE
+                 */
+
+                copyButton.addEventListener(
+                    "click",
+                    async function () {
+
+
+                        const code =
+                            meetingCode.textContent.trim();
+
+
+                        if (!code) {
+
+                            showCopyStatus(
+                                "Meeting code is not available."
+                            );
+
+                            return;
+
+                        }
+
+
+                        let copied =
+                            false;
+
+
+                        /*
+                         * MODERN CLIPBOARD API
+                         */
+
+                        if (
+                            navigator.clipboard &&
+                            window.isSecureContext
+                        ) {
+
+                            try {
+
+                                await navigator.clipboard.writeText(
+                                    code
+                                );
+
+
+                                copied =
+                                    true;
+
+                            } catch (error) {
+
+                                copied =
+                                    false;
+
+                            }
+
+                        }
+
+
+                        /*
+                         * FALLBACK
+                         */
+
+                        if (!copied) {
+
+                            copied =
+                                fallbackCopyText(
+                                    code
+                                );
+
+                        }
+
+
+                        /*
+                         * SUCCESS
+                         */
+
+                        if (copied) {
+
+                            copyButton.innerHTML =
+                                `
+                                <span
+                                    class="copy-icon"
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <span class="copy-button-text">
+                                    Copied
+                                </span>
+                                `;
+
+
+                            showCopyStatus(
+                                "Meeting code copied to clipboard."
+                            );
+
+
+                        }
+
+                        /*
+                         * FAILURE
+                         */
+
+                        else {
+
+                            copyButton.innerHTML =
+                                `
+                                <span
+                                    class="copy-icon"
+                                    aria-hidden="true"
+                                >
+                                    !
+                                </span>
+
+                                <span class="copy-button-text">
+                                    Copy Failed
+                                </span>
+                                `;
+
+
+                            showCopyStatus(
+                                "Unable to copy the meeting code."
+                            );
+
+                        }
+
+
+                        /*
+                         * RESTORE BUTTON
+                         */
+
+                        setTimeout(
+                            function () {
+
+                                copyButton.innerHTML =
+                                    originalButtonHTML;
+
+                            },
+                            2000
+                        );
+
+
+                    }
+                );
+
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,549 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ profile.user.username }} - Profile | MeetClone
+    </title>
+
+
+    <!-- =====================================================
+         PROFILE CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/profile.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+
+        <!-- LOGO -->
+
+        <div class="navbar-left">
+
+            <a
+                href="{% url 'home' %}"
+                class="logo"
+            >
+                MeetClone
+            </a>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="navbar-right">
+
+
+            <a
+                href="{% url 'home' %}"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{% url 'account_settings' %}"
+                class="nav-link"
+            >
+                Account Settings
+            </a>
+
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout-btn"
+            >
+                Logout
+            </a>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN PROFILE PAGE
+    ====================================================== -->
+
+    <main class="profile-page">
+
+
+        <div class="profile-container">
+
+
+            <!-- =================================================
+                 PROFILE HERO
+            ================================================== -->
+
+            <section class="profile-hero">
+
+
+                <!-- PROFILE PICTURE -->
+
+                <div class="profile-picture-wrapper">
+
+
+                    {% if profile.profile_picture %}
+
+                        <img
+                            src="{{ profile.profile_picture.url }}"
+                            alt="{{ profile.user.username }}"
+                            class="profile-picture"
+                        >
+
+                    {% else %}
+
+                        <div
+                            class="profile-picture-placeholder"
+                            aria-label="Profile picture placeholder"
+                        >
+
+                            {{ profile.user.username|first|upper }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- PROFILE DETAILS -->
+
+                <div class="profile-hero-content">
+
+
+                    <span class="profile-label">
+                        MEETCLONE PROFILE
+                    </span>
+
+
+                    <h1>
+                        {{ profile.user.username }}
+                    </h1>
+
+
+                    <p class="profile-email">
+                        {{ profile.user.email }}
+                    </p>
+
+
+                    <div class="profile-status">
+
+
+                        {% if profile.user.is_active %}
+
+                            <span class="status-dot"></span>
+
+                            Active Account
+
+                        {% else %}
+
+                            <span class="status-dot inactive"></span>
+
+                            Inactive Account
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROFILE INFORMATION
+            ================================================== -->
+
+            <section class="profile-section">
+
+
+                <div class="section-header">
+
+
+                    <div>
+
+                        <h2>
+                            Profile Information
+                        </h2>
+
+
+                        <p>
+                            Your basic account details.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="{% url 'edit_profile' %}"
+                        class="edit-profile-btn"
+                    >
+                        Edit Profile
+                    </a>
+
+
+                </div>
+
+
+
+                <!-- PROFILE DETAILS GRID -->
+
+                <div class="profile-details-grid">
+
+
+                    <!-- USERNAME -->
+
+                    <div class="profile-detail-card">
+
+                        <span class="detail-label">
+                            Username
+                        </span>
+
+                        <strong class="detail-value">
+                            {{ profile.user.username }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="profile-detail-card">
+
+                        <span class="detail-label">
+                            Email Address
+                        </span>
+
+                        <strong class="detail-value">
+                            {{ profile.user.email }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- FIRST NAME -->
+
+                    <div class="profile-detail-card">
+
+                        <span class="detail-label">
+                            First Name
+                        </span>
+
+                        <strong class="detail-value">
+
+                            {% if profile.user.first_name %}
+
+                                {{ profile.user.first_name }}
+
+                            {% else %}
+
+                                Not added
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- LAST NAME -->
+
+                    <div class="profile-detail-card">
+
+                        <span class="detail-label">
+                            Last Name
+                        </span>
+
+                        <strong class="detail-value">
+
+                            {% if profile.user.last_name %}
+
+                                {{ profile.user.last_name }}
+
+                            {% else %}
+
+                                Not added
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACCOUNT INFORMATION
+            ================================================== -->
+
+            <section class="profile-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Account Information
+                        </h2>
+
+
+                        <p>
+                            Information about your MeetClone account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="account-information-list">
+
+
+                    <!-- DATE JOINED -->
+
+                    <div class="account-information-row">
+
+                        <span class="account-information-label">
+                            Date Joined
+                        </span>
+
+
+                        <span class="account-information-value">
+
+                            {{ profile.user.date_joined|date:"F d, Y" }}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- LAST LOGIN -->
+
+                    <div class="account-information-row">
+
+                        <span class="account-information-label">
+                            Last Login
+                        </span>
+
+
+                        <span class="account-information-value">
+
+                            {% if profile.user.last_login %}
+
+                                {{ profile.user.last_login|date:"F d, Y, h:i A" }}
+
+                            {% else %}
+
+                                Not available
+
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- ACCOUNT STATUS -->
+
+                    <div class="account-information-row">
+
+                        <span class="account-information-label">
+                            Account Status
+                        </span>
+
+
+                        <span
+                            class="
+                                account-status
+                                {% if profile.user.is_active %}
+                                    account-active
+                                {% else %}
+                                    account-inactive
+                                {% endif %}
+                            "
+                        >
+
+                            {% if profile.user.is_active %}
+
+                                Active
+
+                            {% else %}
+
+                                Inactive
+
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACCOUNT SETTINGS
+            ================================================== -->
+
+            <section class="profile-section settings-section">
+
+
+                <div>
+
+                    <h2>
+                        Account Settings
+                    </h2>
+
+
+                    <p>
+                        Manage your account and privacy preferences.
+                    </p>
+
+                </div>
+
+
+                <div class="settings-actions">
+
+
+                    <a
+                        href="{% url 'account_settings' %}"
+                        class="settings-btn"
+                    >
+                        Account Settings
+                    </a>
+
+
+                    <a
+                        href="{% url 'privacy' %}"
+                        class="settings-btn secondary-btn"
+                    >
+                        Privacy Settings
+                    </a>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 BOTTOM ACTIONS
+            ================================================== -->
+
+            <div class="profile-actions">
+
+
+                <a
+                    href="{% url 'home' %}"
+                    class="back-home-btn"
+                >
+                    ← Back to Home
+                </a>
+
+
+                
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <p>
+            © 2026 MeetClone
+        </p>
+
+
+        <div class="footer-links">
+
+
+            <a href="{% url 'privacy' %}">
+                Privacy
+            </a>
+
+
+            <a href="{% url 'terms' %}">
+                Terms & Conditions
+            </a>
+
+
+            <a href="{% url 'help' %}">
+                Help
+            </a>
+
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,227 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Account Recovery - MeetClone
+    </title>
+
+
+    <!-- =====================================================
+         ACCOUNT RECOVERY CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/recovery.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="recovery-page">
+
+
+        <div class="recovery-container">
+
+
+            <!-- =================================================
+                 LOGO
+            ================================================== -->
+
+            <a
+                href="{% url 'login' %}"
+                class="recovery-logo"
+                aria-label="Back to MeetClone login"
+            >
+                MeetClone
+            </a>
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <section class="recovery-header">
+
+
+                <!-- RECOVERY ICON -->
+
+                <div
+                    class="recovery-icon"
+                    aria-hidden="true"
+                >
+                    🔐
+                </div>
+
+
+                <!-- HEADER CONTENT -->
+
+                <div class="recovery-header-content">
+
+
+                    <span class="page-label">
+                        ACCOUNT SUPPORT
+                    </span>
+
+
+                    <h1>
+                        Account Recovery
+                    </h1>
+
+
+                    <p>
+                        Forgot your password? No problem.
+                        We can help you regain access to
+                        your MeetClone account.
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 RECOVERY OPTIONS
+            ================================================== -->
+
+            <section class="recovery-options">
+
+
+                <a
+                    href="{% url 'forgot_password' %}"
+                    class="recovery-option"
+                >
+
+
+                    <!-- OPTION ICON -->
+
+                    <div
+                        class="option-icon"
+                        aria-hidden="true"
+                    >
+                        🔑
+                    </div>
+
+
+                    <!-- OPTION CONTENT -->
+
+                    <div class="option-content">
+
+
+                        <h2>
+                            Forgot Password?
+                        </h2>
+
+
+                        <p>
+                            Reset your MeetClone account password
+                            and securely regain access to your
+                            account.
+                        </p>
+
+
+                    </div>
+
+
+                    <!-- OPTION ARROW -->
+
+                    <span
+                        class="option-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </span>
+
+
+                </a>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 INFORMATION
+            ================================================== -->
+
+            <section class="recovery-info">
+
+
+                <div
+                    class="recovery-info-icon"
+                    aria-hidden="true"
+                >
+                    🛡️
+                </div>
+
+
+                <div class="recovery-info-content">
+
+
+                    <h3>
+                        Account verification
+                    </h3>
+
+
+                    <p>
+                        You will need to verify your account
+                        before creating a new password.
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="recovery-footer">
+
+
+                <p>
+
+                    Remember your password?
+
+                    <a href="{% url 'login' %}">
+                        Back to Login
+                    </a>
+
+                </p>
+
+
+            </footer>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

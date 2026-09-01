@@ -1,0 +1,680 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+
+    background: #f8f9fa;
+    color: #202124;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+    min-height: 72px;
+
+    padding: 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e8eaed;
+}
+
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+
+.logo {
+    color: #1a73e8;
+
+    font-size: 25px;
+    font-weight: 600;
+
+    letter-spacing: -0.5px;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+
+.logo:hover {
+    color: #1765cc;
+}
+
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   PROFILE LINK
+========================================================= */
+
+.profile-link {
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    color: #3c4043;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.profile-link:hover {
+    background: #f8f9fa;
+
+    color: #1a73e8;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout-btn {
+    padding: 9px 15px;
+
+    border: 1px solid #dadce0;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #3c4043;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.logout-btn:hover {
+    background: #f8f9fa;
+
+    border-color: #c7c9cc;
+
+    color: #202124;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.help-page {
+    width: 100%;
+
+    padding: 55px 20px 70px;
+}
+
+
+.help-container {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 48px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8eaed;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 30px rgba(60, 64, 67, 0.08);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.help-header {
+    text-align: center;
+
+    padding-bottom: 40px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.help-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f0fe;
+
+    color: #1a73e8;
+
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+.page-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #1a73e8;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.help-header h1 {
+    color: #202124;
+
+    font-size: 38px;
+    line-height: 1.2;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+}
+
+
+.help-header > p {
+    max-width: 600px;
+
+    margin: 14px auto 0;
+
+    color: #5f6368;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   HELP SECTIONS
+========================================================= */
+
+.help-section {
+    padding: 32px 0;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.help-section:last-of-type {
+    border-bottom: none;
+}
+
+
+.help-section h2 {
+    margin-bottom: 14px;
+
+    color: #202124;
+
+    font-size: 21px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+}
+
+
+.help-section p {
+    margin-top: 10px;
+
+    color: #5f6368;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   LISTS
+========================================================= */
+
+.help-section ul,
+.help-section ol {
+    margin-top: 16px;
+
+    padding-left: 25px;
+
+    color: #5f6368;
+}
+
+
+.help-section li {
+    margin-bottom: 10px;
+
+    padding-left: 5px;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+.help-section li strong {
+    color: #3c4043;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INLINE LINK
+========================================================= */
+
+.inline-link {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #1a73e8;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.inline-link:hover {
+    color: #1765cc;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   HELP CARDS
+========================================================= */
+
+.help-card {
+    margin-top: 14px;
+
+    padding: 20px;
+
+    border: 1px solid #e8eaed;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.help-card:hover {
+    background: #f8f9fa;
+
+    border-color: #dadce0;
+
+    transform: translateY(-1px);
+}
+
+
+.help-card h3 {
+    color: #3c4043;
+
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+
+.help-card p {
+    margin-top: 7px;
+
+    color: #5f6368;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.help-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    padding-top: 35px;
+}
+
+
+.back-home-btn,
+.secondary-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.back-home-btn {
+    border: 1px solid #1a73e8;
+
+    background: #1a73e8;
+
+    color: #ffffff;
+}
+
+
+.back-home-btn:hover {
+    background: #1765cc;
+
+    border-color: #1765cc;
+
+    transform: translateY(-1px);
+}
+
+
+.secondary-btn {
+    border: 1px solid #dadce0;
+
+    background: #ffffff;
+
+    color: #3c4043;
+}
+
+
+.secondary-btn:hover {
+    background: #f8f9fa;
+
+    border-color: #c7c9cc;
+
+    color: #202124;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    min-height: 70px;
+
+    padding: 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border-top: 1px solid #eeeeee;
+
+    color: #80868b;
+
+    font-size: 13px;
+}
+
+
+.footer-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.footer-links a {
+    color: #5f6368;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+
+.footer-links a:hover {
+    color: #1a73e8;
+}
+
+
+/* =========================================================
+   FOCUS STATES
+========================================================= */
+
+.profile-link:focus-visible,
+.logout-btn:focus-visible,
+.inline-link:focus-visible,
+.back-home-btn:focus-visible,
+.secondary-btn:focus-visible,
+.footer-links a:focus-visible {
+    outline: 2px solid #1a73e8;
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        min-height: 64px;
+
+        padding: 0 20px;
+    }
+
+
+    .logo {
+        font-size: 22px;
+    }
+
+
+    .help-page {
+        padding: 30px 15px 50px;
+    }
+
+
+    .help-container {
+        padding: 32px 25px;
+
+        border-radius: 12px;
+    }
+
+
+    .help-header h1 {
+        font-size: 32px;
+    }
+
+
+    .help-section {
+        padding: 27px 0;
+    }
+
+
+    .help-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .back-home-btn,
+    .secondary-btn {
+        width: 100%;
+    }
+
+
+    .footer {
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 0 15px;
+    }
+
+
+    .navbar-right {
+        gap: 5px;
+    }
+
+
+    .profile-link {
+        padding: 8px 10px;
+    }
+
+
+    .logout-btn {
+        padding: 8px 10px;
+    }
+
+
+    .help-container {
+        padding: 27px 20px;
+    }
+
+
+    .help-icon {
+        width: 58px;
+        height: 58px;
+
+        font-size: 27px;
+    }
+
+
+    .help-header h1 {
+        font-size: 28px;
+    }
+
+
+    .help-header > p {
+        font-size: 14px;
+    }
+
+
+    .help-section h2 {
+        font-size: 19px;
+    }
+
+
+    .help-section p,
+    .help-section li {
+        font-size: 14px;
+    }
+
+
+    .help-card {
+        padding: 17px;
+    }
+
+
+    .help-card h3 {
+        font-size: 15px;
+    }
+
+
+    .footer-links {
+        gap: 16px;
+    }
+
+}

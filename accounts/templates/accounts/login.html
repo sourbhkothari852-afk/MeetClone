@@ -1,0 +1,445 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Login - MeetClone
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/auth.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MAIN AUTH PAGE
+    ====================================================== -->
+
+    <main class="auth-page">
+
+        <div class="auth-container">
+
+
+            <!-- =================================================
+                 LEFT BRAND PANEL
+            ================================================== -->
+
+            <section class="auth-brand">
+
+
+                <!-- LOGO -->
+
+                <a
+                    href="{% url 'home' %}"
+                    class="auth-logo"
+                >
+                    MeetClone
+                </a>
+
+
+                <!-- BRAND CONTENT -->
+
+                <div class="brand-content">
+
+
+                    <h1>
+
+                        Welcome
+
+                        <span>
+                            back.
+                        </span>
+
+                    </h1>
+
+
+                    <p>
+
+                        Sign in to MeetClone and connect with
+                        your team, friends and family through
+                        secure video meetings.
+
+                    </p>
+
+
+                    <!-- =========================================
+                         VIDEO MEETING PREVIEW
+                    ========================================== -->
+
+                    <div class="brand-preview">
+
+
+                        <div class="brand-preview-inner">
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                            <div class="preview-card">
+                                👤
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BRAND FOOTER -->
+
+                <p class="brand-footer">
+
+                    Simple. Secure. Connected.
+
+                </p>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 LOGIN FORM PANEL
+            ================================================== -->
+
+            <section class="auth-form-section">
+
+
+                <!-- =============================================
+                     FORM HEADER
+                ============================================== -->
+
+                <div class="auth-form-header">
+
+
+                    <h2>
+                        Login to MeetClone
+                    </h2>
+
+
+                    <p>
+                        Enter your account details to continue.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =============================================
+                     LOGIN FORM
+                ============================================== -->
+
+                <form
+                    method="POST"
+                    class="auth-form"
+                    id="loginForm"
+                >
+
+                    {% csrf_token %}
+
+
+                    <!-- =========================================
+                         DJANGO FORM
+                    ========================================== -->
+
+                    {{ form.as_p }}
+
+
+                    <!-- =========================================
+                         LOGIN BUTTON
+                    ========================================== -->
+
+                    <button
+                        type="submit"
+                        class="auth-submit"
+                    >
+                        Login
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- =============================================
+                     FORGOT PASSWORD
+                ============================================== -->
+
+                <div class="login-help">
+
+
+                    <form
+                        method="POST"
+                        action="{% url 'forgot_password_start' %}"
+                        id="forgotPasswordForm"
+                    >
+
+                        {% csrf_token %}
+
+
+                        <!-- =====================================
+                             USERNAME
+                             COPIED FROM LOGIN FORM
+                        ====================================== -->
+
+                        <input
+                            type="hidden"
+                            name="username"
+                            id="recoveryUsername"
+                        >
+
+
+                        <button
+                            type="submit"
+                            class="forgot-password-button"
+                        >
+                            Forgot password?
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+
+
+
+                <!-- =============================================
+                     SIGNUP LINK
+                ============================================== -->
+
+                <div class="auth-footer">
+
+
+                    <p>
+
+                        Don't have an account?
+
+                        <a
+                            href="{% url 'signup' %}"
+                        >
+                            Create Account
+                        </a>
+
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PUBLIC SITE FOOTER
+
+         These pages should be accessible without login.
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+        <div class="footer-content">
+
+
+            <!-- COPYRIGHT -->
+
+            <p>
+
+                © 2026 MeetClone
+
+            </p>
+
+
+
+            <!-- PUBLIC LINKS -->
+
+            <nav
+                class="footer-links"
+                aria-label="Footer navigation"
+            >
+
+
+                <a
+                    href="{% url 'privacy' %}"
+                >
+                    Privacy
+                </a>
+
+
+                <a
+                    href="{% url 'terms' %}"
+                >
+                    Terms &amp; Conditions
+                </a>
+
+
+                <a
+                    href="{% url 'help' %}"
+                >
+                    Help
+                </a>
+
+
+            </nav>
+
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         FORGOT PASSWORD JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+
+        const forgotPasswordForm =
+            document.getElementById(
+                "forgotPasswordForm"
+            );
+
+
+        const recoveryUsername =
+            document.getElementById(
+                "recoveryUsername"
+            );
+
+
+        const usernameInput =
+            loginForm.querySelector(
+                'input[name="username"]'
+            );
+
+
+        /*
+         * ================================================
+         * FORGOT PASSWORD
+         *
+         * User only needs to enter the username.
+         * Password should NOT be required here.
+         * ================================================
+         */
+
+        forgotPasswordForm.addEventListener(
+            "submit",
+            function (event) {
+
+
+                /*
+                 * CHECK USERNAME
+                 */
+
+                if (
+                    !usernameInput ||
+                    usernameInput.value.trim() === ""
+                ) {
+
+                    event.preventDefault();
+
+
+                    usernameInput.setCustomValidity(
+                        "Please enter your username first."
+                    );
+
+
+                    usernameInput.reportValidity();
+
+
+                    usernameInput.focus();
+
+
+                    return;
+
+                }
+
+
+                /*
+                 * COPY USERNAME
+                 */
+
+                recoveryUsername.value =
+                    usernameInput.value.trim();
+
+
+            }
+        );
+
+
+
+        /*
+         * ================================================
+         * CLEAR CUSTOM ERROR
+         * ================================================
+         */
+
+        if (usernameInput) {
+
+
+            usernameInput.addEventListener(
+                "input",
+                function () {
+
+                    usernameInput.setCustomValidity("");
+
+                }
+            );
+
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
