@@ -1,24 +1,11 @@
-"""
-ASGI config for MeetClone project.
-"""
-
 import os
 
 from django.core.asgi import get_asgi_application
 
-from channels.auth import AuthMiddlewareStack
 
-from channels.routing import (
-    ProtocolTypeRouter,
-    URLRouter,
-)
-
-from django.contrib.staticfiles.handlers import ASGIStaticFilesHandler
-
-from meetings.routing import (
-    websocket_urlpatterns,
-)
-
+# =========================================================
+# DJANGO SETTINGS
+# =========================================================
 
 os.environ.setdefault(
     "DJANGO_SETTINGS_MODULE",
@@ -26,25 +13,35 @@ os.environ.setdefault(
 )
 
 
-django_asgi_app = (
-    get_asgi_application()
-)
+# =========================================================
+# INITIALIZE DJANGO FIRST
+# =========================================================
+
+django_asgi_app = get_asgi_application()
 
 
-application = ProtocolTypeRouter({
+# =========================================================
+# IMPORT CHANNELS AFTER DJANGO INITIALIZATION
+# =========================================================
 
-    "http":
-        ASGIStaticFilesHandler(
-            django_asgi_app
-        ),
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
 
-    "websocket":
-        AuthMiddlewareStack(
+from meetings.routing import websocket_urlpatterns
 
+
+# =========================================================
+# ASGI APPLICATION
+# =========================================================
+
+application = ProtocolTypeRouter(
+    {
+        "http": django_asgi_app,
+
+        "websocket": AuthMiddlewareStack(
             URLRouter(
                 websocket_urlpatterns
             )
-
         ),
-
-})
+    }
+)
