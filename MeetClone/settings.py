@@ -76,6 +76,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
 
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 
     'django.contrib.sessions.middleware.SessionMiddleware',
 
@@ -224,9 +225,20 @@ USE_TZ = True
 # STATIC FILES
 # =========================================================
 
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
 
-MEDIA_URL = '/media/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+# =========================================================
+# STATIC FILE STORAGE
+# =========================================================
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 
