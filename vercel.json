@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "builds": [
         {
             "src": "MeetClone/wsgi.py",
@@ -6,10 +7,6 @@
         }
     ],
     "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
         {
             "src": "/(.*)",
             "dest": "MeetClone/wsgi.py"
